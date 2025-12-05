@@ -1,3 +1,80 @@
+# CronoFocus — Documentação Resumida
+
+Projeto: CronoFocus — PWA para planejamento e execução temporal de tarefas.
+
+Última atualização: 05/12/2025
+
+Resumo rápido
+------------
+- PWA (Progressive Web App) para planejar, executar e analisar atividades com foco temporal.
+- Stack: Vue 3, Vite, Tailwind CSS, DaisyUI, Pinia, Vue Router, Workbox.
+- Status: pronto para testes (refinamentos visuais concluídos). Build OK em produção.
+
+Métricas principais (sessão atual)
+---------------------------------
+- Bundle final: ~532 KB
+- Módulos transformados: ~133
+- Tempo de build: ~3s
+- PWA precache: 20 arquivos
+
+Resumo das fases realizadas
+--------------------------
+- FASE 1 — Fundamentos: Stores (Pinia), rotas, views e estrutura base.
+- FASE 2 — Modularização de Views: separação em componentes (Home, Execute, Plan, Review, History, Settings, Login, Export).
+- FASE 3 — Modularização de Composables: useAuth, useIndexedDB, useNotifications, useExport, useTimer → cada um extraído em módulos menores e reutilizáveis.
+- FASE 4 — Refinamento de Design: atualização para Tailwind v4, simplificação de glassmorphism, remoção de bordas excessivas, ajustes de sombra, tokens CSS e acessibilidade visual.
+
+Alterações e pontos de atenção
+------------------------------
+- Atualização das classes Tailwind: `bg-gradient-to-*` → `bg-linear-to-*` (v4). Ajustes em tokens de espaçamento e min/max sizes.
+- Glassmorphism simplificado: blur reduzido e cores mais opacas; variáveis CSS centralizadas em `src/assets/css/base/variables.css`.
+- Borda padronizada: botões e cards sem borda, inputs com `focus:ring` sutil.
+- Correções importantes:
+  - Import dinâmico do `authStore` para evitar timing issues com Pinia.
+  - Correções no uso do `router.push` invocado via templates.
+  - Função `toCloneable()` para salvar dados no IndexedDB evitando Proxies Vue.
+
+Estrutura do projeto (resumo)
+----------------------------
+src/
+- assets/css/        (modular, base, components, utilities)
+- components/        (agenda, execute, export, history, home, layout, login, plan, review, settings)
+- composables/       (auth/, db/, export/, notifications/, timer/ — módulos reusáveis)
+- views/             (HomeView.vue, PlanView.vue, ExecuteView.vue, ReviewView.vue, HistoryView.vue, ExportView.vue, SettingsView.vue, LoginView.vue)
+- stores/            (authStore.js, settingsStore.js, timeStore.js)
+
+Como rodar localmente
+----------------------
+1. Instalar dependências
+   npm install
+
+2. Ambiente de desenvolvimento
+   npm run dev
+
+3. Build produção e preview
+   npm run build
+   npm run preview
+
+Observações: use `npm run lint` se quiser checar warnings/erros de estilo e classes Tailwind.
+
+Próximos passos recomendados
+----------------------------
+1. Teste de ponta a ponta: Login → Criar Tarefa → Executar Timer → Exportar → Restaurar Backup.
+2. Testes de responsividade e comportamentos PWA (instalação, offline, push notifications em mobile).
+3. Implementar E2E (Cypress / Playwright) e Unit tests (Vitest) para fluxos críticos.
+4. Otimização fina do bundle, lazy-load de partes pesadas e imagens.
+5. Acessibilidade: checar contraste, foco por teclado e ARIA roles.
+
+Contatos e referências
+----------------------
+- Repositório: https://github.com/MrJCRJ/cronofocus
+- Docs Vue: https://vuejs.org/
+- Tailwind CSS: https://tailwindcss.com/
+- DaisyUI: https://daisyui.com/
+
+Licença: MIT (do repositório)
+
+FIM
 # 🎯 CronoFocus - Documentação do Projeto# 🎯 CronoFocus - Documentação do Projeto
 
 > PWA de agenda temporal inteligente para planejamento, execução e análise de atividades diárias.---
