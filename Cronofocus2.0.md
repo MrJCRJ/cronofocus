@@ -114,3 +114,54 @@ npm run lint
 **Versão:** 2.0 — CronoFocus 05/12/2025
 
 **Autor:** Equipe CronoFocus — atualizações manuais e automações
+
+---
+
+## Detailed Technical Reference (legacy CRONOFOCUS)
+
+This section consolidates the more detailed, legacy information from the previous `CRONOFOCUS.md` for developers and QA.
+
+### Build & Metrics
+- Bundle final: ~532 KB
+- Módulos transformados: 133
+- Build time: ~3.06s
+
+### Modularization - Views (FASE 2)
+Breakdown (before → after / components created):
+- HomeView: 335 → 175 (-48%) — HomeHeader, QuickActions, InProgressBanner, CategoriesLegend
+- ExecuteView: 559 → 260 (-53%) — TimerDisplay, TimerControls, SessionStats, DistractionModal, CompletionModal
+- PlanView: 339 → 160 (-53%) — WeekNavigation, DayCard, PlanningTips
+- SettingsView: 614 → 202 (-67%) — ProfileTab, PreferencesTab, NotificationsTab, DataTab
+- HistoryView: 450 → 148 (-67%) — MonthNavigation, MonthStats, HistoryList, CalendarView
+- LoginView: 438 → 152 (-65%) — ProfileSelector, LoginForm, RegisterForm
+- ReviewView: 366 → 127 (-65%) — StatsOverview, WeeklyChart, CategoryBreakdown, InsightsList
+- ExportView: 358 → 163 (-54%) — FormatSelector, DateRangeSelector, ExportPreview
+
+### Modularization - Composables (FASE 3)
+Summary (before → after / modules):
+- useIndexedDB: 751 → 100 — schema.js, utils.js, core.js, crud.js, entities.js, stats.js
+- useAuth: 410 → 80 — crypto.js, session.js, profiles.js
+- useNotifications: 420 → 72 — audio.js, push.js, tasks.js, scheduler.js
+- useExport: 399 → 35 — utils.js, csv.js, json.js, png.js, report.js
+- useTimer: 386 → 80 — worker.js, state.js, controls.js, formatting.js
+
+### Bugs Encontrados e Corrigidos (detalhe)
+1. Sons de notificação em `useNotifications` - fallback com `AudioContext` e beep programmatic fixes.
+2. Router navigation errors (router.push in templates) - moved calls to methods like `goToX()`.
+3. `Symbol(router)` error in guards - dynamic import of `authStore` in `router/index.js` guard.
+4. IndexedDB clone errors - `toCloneable()` ensures Vue proxies are stripped before saving.
+
+### Testes Realizados (Smoke & Integration)
+- IndexedDB initialization — OK
+- Production build — OK (bundle sizes: ~532KB gzipped)
+- Lazy loading of views — OK
+- Service Worker creation/precache — OK
+- Navigation between pages — OK (no console errors)
+- Quick Actions — OK
+- Router guards (dynamic import) — OK
+- Unit/Integration coverage — pending expansion (Vitest)
+
+---
+
+If you want to keep an archival copy of the legacy `CRONOFOCUS.md` rather than delete it, I can rename it to `CRONOFOCUS.legacy.md` and keep it in the repository for reference. Otherwise I'll remove the legacy file after this update.
+
