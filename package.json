@@ -1,0 +1,42 @@
+{
+  "name": "cronofocus",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "PWA para planejamento, execução e análise de atividades diárias com timeline vertical",
+  "author": "CronoFocus Team",
+  "license": "MIT",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "deploy": "npm run build && vercel --prod",
+    "deploy:preview": "npm run build && vercel",
+    "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs --fix --ignore-path .gitignore",
+    "vercel-build": "npm run build",
+    "generate-icons": "node scripts/generate-icons.js"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.1.17",
+    "daisyui": "^5.5.8",
+    "html2canvas": "^1.4.1",
+    "pinia": "^3.0.4",
+    "tailwindcss": "^4.1.17",
+    "uuid": "^13.0.0",
+    "vite-plugin-pwa": "^1.2.0",
+    "vue": "^3.5.24",
+    "vue-router": "^4.6.3",
+    "workbox-precaching": "^7.4.0",
+    "workbox-routing": "^7.4.0",
+    "workbox-strategies": "^7.4.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.1",
+    "eslint": "^8.57.0",
+    "eslint-plugin-vue": "^9.28.0",
+    "vite": "^7.2.4"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

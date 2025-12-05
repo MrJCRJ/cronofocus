@@ -1,0 +1,116 @@
+{
+  "name": "CronoFocus - Planejador Temporal Inteligente",
+  "short_name": "CronoFocus",
+  "description": "Organize seu tempo com foco e eficiência. Agenda vertical, timer pomodoro e revisões diárias.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#6366f1",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icons/icon-72.png",
+      "sizes": "72x72",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-128.png",
+      "sizes": "128x128",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-144.png",
+      "sizes": "144x144",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-152.png",
+      "sizes": "152x152",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icons/icon-384.png",
+      "sizes": "384x384",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": [
+    "productivity",
+    "utilities"
+  ],
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "screenshots": [
+    {
+      "src": "/screenshots/agenda.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Agenda do dia com timeline vertical"
+    },
+    {
+      "src": "/screenshots/timer.png",
+      "sizes": "720x1280",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "Timer de foco com controle de distrações"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Nova Tarefa",
+      "short_name": "Nova",
+      "description": "Adicionar nova tarefa",
+      "url": "/?action=new-task",
+      "icons": [
+        {
+          "src": "/icons/shortcut-add.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Timer",
+      "short_name": "Timer",
+      "description": "Iniciar modo foco",
+      "url": "/execute",
+      "icons": [
+        {
+          "src": "/icons/shortcut-timer.png",
+          "sizes": "96x96"
+        }
+      ]
+    },
+    {
+      "name": "Revisão",
+      "short_name": "Revisão",
+      "description": "Revisar o dia",
+      "url": "/review",
+      "icons": [
+        {
+          "src": "/icons/shortcut-review.png",
+          "sizes": "96x96"
+        }
+      ]
+    }
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false
+}
