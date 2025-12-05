@@ -156,6 +156,11 @@ function logout() {
   authStore.logout();
   router.push("/login");
 }
+
+// Navigation helper
+function goToExport() {
+  router.push("/export");
+}
 </script>
 
 <template>
@@ -560,7 +565,7 @@ function logout() {
 
           <div class="space-y-4">
             <button
-              @click="router.push('/export')"
+              @click="goToExport"
               class="btn-premium btn-glass w-full justify-start px-5 py-4 text-left"
             >
               <span class="mr-3 text-xl">📤</span>

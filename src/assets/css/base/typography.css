@@ -1,0 +1,85 @@
+/* ============================================
+   CronoFocus - Typography
+   ============================================ */
+
+/* Timer Display Font */
+.timer-display {
+  font-family: "JetBrains Mono", "SF Mono", "Monaco", monospace;
+  font-size: clamp(4rem, 20vw, 10rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  font-variant-numeric: tabular-nums;
+  background: linear-gradient(
+    135deg,
+    var(--text-primary),
+    var(--primary-light)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 0 40px rgba(99, 102, 241, 0.5);
+}
+
+.timer-display.running {
+  animation: timer-pulse 1s ease-in-out infinite;
+}
+
+/* Text Gradient */
+.text-gradient {
+  background: linear-gradient(
+    135deg,
+    var(--primary-light) 0%,
+    var(--secondary) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-success {
+  background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Truncate Utilities */
+.truncate-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.truncate-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Category Colors */
+.category-work {
+  color: var(--category-work);
+}
+.category-study {
+  color: var(--category-study);
+}
+.category-exercise {
+  color: var(--category-exercise);
+}
+.category-personal {
+  color: var(--category-personal);
+}
+.category-leisure {
+  color: var(--category-leisure);
+}
+.category-sleep {
+  color: var(--category-sleep);
+}
+.category-health {
+  color: var(--category-health);
+}
+.category-social {
+  color: var(--category-social);
+}

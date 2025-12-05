@@ -1,0 +1,47 @@
+/* ============================================
+   CronoFocus - Layout Utilities
+   ============================================ */
+
+/* Responsive Utilities */
+@media (max-width: 768px) {
+  .timeline-grid {
+    grid-template-columns: 50px 1fr;
+  }
+
+  .task-block {
+    padding: 6px 8px;
+  }
+}
+
+@media (max-width: 640px) {
+  .timer-display {
+    font-size: 3rem;
+  }
+
+  .btn-premium {
+    padding: 0.625rem 1.25rem;
+  }
+
+  .modal-content {
+    border-radius: 1rem;
+    margin: 0.5rem;
+  }
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+
+  .btn-premium,
+  .glass-card {
+    backdrop-filter: none;
+    border: 1px solid #ddd;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+}

@@ -3,7 +3,7 @@
  * Sistema de persistência local com schema completo
  */
 
-import { ref, readonly } from 'vue'
+import { ref, readonly, toRaw, isProxy } from 'vue'
 import { v4 as uuidv4 } from 'uuid'
 
 const DB_NAME = 'CronoFocusDB'
@@ -13,6 +13,40 @@ const DB_VERSION = 1
 const db = ref(null)
 const isReady = ref(false)
 const error = ref(null)
+
+/**
+ * Converte objetos Vue reativos para objetos puros clonáveis
+ * Isso é necessário porque IndexedDB não pode clonar Vue Proxies
+ */
+function toCloneable(data) {
+  if (data === null || data === undefined) return data
+  if (typeof data !== 'object') return data
+
+  // Se for um Proxy Vue, converter para objeto puro
+  const raw = isProxy(data) ? toRaw(data) : data
+
+  // Se for um array, mapear recursivamente
+  if (Array.isArray(raw)) {
+    return raw.map(item => toCloneable(item))
+  }
+
+  // Se for uma data, converter para ISO string
+  if (raw instanceof Date) {
+    return raw.toISOString()
+  }
+
+  // Se for um objeto, criar cópia profunda
+  const result = {}
+  for (const key in raw) {
+    if (Object.prototype.hasOwnProperty.call(raw, key)) {
+      const value = raw[key]
+      // Ignorar funções e símbolos
+      if (typeof value === 'function' || typeof value === 'symbol') continue
+      result[key] = toCloneable(value)
+    }
+  }
+  return result
+}
 
 // Schema do banco de dados
 const DB_SCHEMA = {
@@ -121,7 +155,6 @@ function initDB() {
     request.onsuccess = (event) => {
       db.value = event.target.result
       isReady.value = true
-      console.log('IndexedDB conectado com sucesso')
       resolve(db.value)
     }
 
@@ -139,8 +172,6 @@ function initDB() {
           config.indexes.forEach(index => {
             store.createIndex(index.name, index.keyPath, index.options)
           })
-
-          console.log(`Store "${storeName}" criado com sucesso`)
         }
       })
     }
@@ -160,10 +191,12 @@ async function add(storeName, data) {
   await initDB()
   return new Promise((resolve, reject) => {
     const store = getStore(storeName, 'readwrite')
+    // Converter para objeto clonável antes de salvar
+    const cleanData = toCloneable(data)
     const item = {
-      ...data,
-      id: data.id || uuidv4(),
-      createdAt: data.createdAt || new Date().toISOString(),
+      ...cleanData,
+      id: cleanData.id || uuidv4(),
+      createdAt: cleanData.createdAt || new Date().toISOString(),
       updatedAt: new Date().toISOString()
     }
 
@@ -197,8 +230,10 @@ async function update(storeName, data) {
   await initDB()
   return new Promise((resolve, reject) => {
     const store = getStore(storeName, 'readwrite')
+    // Converter para objeto clonável antes de salvar
+    const cleanData = toCloneable(data)
     const item = {
-      ...data,
+      ...cleanData,
       updatedAt: new Date().toISOString()
     }
 

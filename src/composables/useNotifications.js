@@ -107,7 +107,6 @@ async function playSound(type, volume = 0.3) {
     // Fallback para beep programático
     const config = BEEP_CONFIG[type] || { frequency: 440, duration: 200 }
     playBeep(config.frequency, config.duration, volume)
-    console.log('Usando som de fallback para:', type)
   }
 }
 

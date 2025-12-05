@@ -4,7 +4,9 @@
  */
 
 import { createRouter, createWebHistory } from 'vue-router'
-import { useAuthStore } from '@/stores/authStore'
+
+// Store será importado dentro do guard para evitar problemas de inicialização
+let authStoreInstance = null
 
 // Lazy load das views
 const LoginView = () => import('@/views/LoginView.vue')
@@ -129,11 +131,24 @@ const router = createRouter({
 
 // Navigation Guards
 router.beforeEach(async (to, from, next) => {
-  const authStore = useAuthStore()
+  // Lazy load do store para evitar problemas de inicialização
+  let authStore
+  try {
+    const { useAuthStore } = await import('@/stores/authStore')
+    authStore = useAuthStore()
+  } catch (error) {
+    console.error('Erro ao carregar authStore:', error)
+    next()
+    return
+  }
 
   // Inicializar auth se necessário
   if (!authStore.initialized) {
-    await authStore.initialize()
+    try {
+      await authStore.initialize()
+    } catch (error) {
+      console.error('Erro ao inicializar auth:', error)
+    }
   }
 
   // Atualizar título da página

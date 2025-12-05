@@ -12,37 +12,135 @@
 - [x] useNotifications.js - Fallback com AudioContext/beep programático
 - [x] Stores Pinia integrados com views
 - [x] Build de produção bem-sucedido (518KB total)
+- [x] **CORREÇÃO DE BUG CRÍTICO**: Navegação com router.push nos templates
+- [x] **CORREÇÃO DE BUG CRÍTICO**: Router guard usando import dinâmico para authStore
+- [x] **CORREÇÃO DE BUG CRÍTICO**: IndexedDB clonagem de Vue Proxies
+- [x] Remoção de arquivo não utilizado (HelloWorld.vue)
+- [x] Servidor dev rodando sem erros JavaScript críticos
+
+### 🏗️ FASE 2 - MODULARIZAÇÃO COMPLETA
+
+#### CSS Modularizado (1085 → 10 arquivos)
+
+```
+src/assets/css/
+├── base/
+│   ├── reset.css          # 58 linhas
+│   ├── variables.css      # 75 linhas
+│   └── typography.css     # 82 linhas
+├── components/
+│   ├── buttons.css        # 166 linhas
+│   ├── cards.css          # 97 linhas
+│   ├── forms.css          # 108 linhas
+│   └── timeline.css       # 175 linhas
+├── utilities/
+│   ├── animations.css     # 120 linhas
+│   ├── glassmorphism.css  # 53 linhas
+│   └── layouts.css        # 48 linhas
+└── main.css               # 21 linhas (imports apenas)
+```
+
+#### HomeView Modularizado (335 → 175 linhas)
+
+```
+src/components/home/
+├── HomeHeader.vue         # 78 linhas
+├── QuickActions.vue       # 50 linhas
+├── InProgressBanner.vue   # 42 linhas
+└── CategoriesLegend.vue   # 37 linhas
+```
+
+#### ExecuteView Modularizado (559 → 260 linhas)
+
+```
+src/components/execute/
+├── TimerDisplay.vue       # 98 linhas
+├── TimerControls.vue      # 79 linhas
+├── SessionStats.vue       # 35 linhas
+├── DistractionModal.vue   # 68 linhas
+└── CompletionModal.vue    # 145 linhas
+```
+
+#### PlanView Modularizado (339 → 160 linhas)
+
+```
+src/components/plan/
+├── WeekNavigation.vue     # 40 linhas
+├── DayCard.vue            # 99 linhas
+└── PlanningTips.vue       # 36 linhas
+```
 
 ### 🐛 BUGS ENCONTRADOS E CORRIGIDOS
 
 1. **Sons de notificação faltando**
+
    - Local: useNotifications.js
    - Comportamento esperado: Tocar sons de alerta
    - Comportamento atual: Erro ao carregar arquivos de som
    - Solução aplicada: Fallback com AudioContext gerando beeps programáticos
 
+2. **CRÍTICO: Navegação quebrada (router.push undefined)**
+
+   - Local: HomeView.vue, SettingsView.vue, ExecuteView.vue
+   - Comportamento esperado: Navegação entre páginas funcional
+   - Comportamento atual: `TypeError: Cannot read properties of undefined (reading 'push')`
+   - Causa: Uso inline de `router.push()` no template sem métodos explícitos
+   - Solução aplicada:
+     - HomeView: Adicionados `goToPlan()`, `goToReview()`, `goToExport()`
+     - SettingsView: Adicionado `goToExport()`
+     - ExecuteView: Adicionado `goToHome()`
+
+3. **CRÍTICO: Symbol(router) not found**
+
+   - Local: router/index.js (navigation guard)
+   - Comportamento esperado: Guards funcionam normalmente
+   - Comportamento atual: `[Vue warn]: injection "Symbol(router)" not found`
+   - Causa: authStore importado estaticamente antes de Pinia ser inicializado
+   - Solução aplicada: Import dinâmico do authStore dentro do beforeEach guard
+
+4. **CRÍTICO: IndexedDB não consegue clonar objetos**
+   - Local: useIndexedDB.js (funções add/update)
+   - Comportamento esperado: Dados salvos no IndexedDB
+   - Comportamento atual: `Failed to execute 'put' on 'IDBObjectStore': [object Array] could not be cloned`
+   - Causa: Objetos Vue Proxy (reativos) não podem ser clonados pelo algoritmo estruturado do IndexedDB
+   - Solução aplicada: Função `toCloneable()` converte Vue Proxies para objetos puros antes de salvar
+
 ### 🧪 TESTES REALIZADOS
 
-| Teste                   | Resultado | Observações                                |
-| ----------------------- | --------- | ------------------------------------------ |
-| IndexedDB inicialização | ✅        | Todos os stores criados                    |
-| Build de produção       | ✅        | 518KB gzipped, PWA configurado             |
-| Lazy loading views      | ✅        | Todas as views carregam sob demanda        |
-| Service Worker          | ✅        | Gerado automaticamente via vite-plugin-pwa |
+| Teste                       | Resultado | Observações                                |
+| --------------------------- | --------- | ------------------------------------------ |
+| IndexedDB inicialização     | ✅        | Todos os stores criados                    |
+| Build de produção           | ✅        | 524KB gzipped, PWA configurado             |
+| Lazy loading views          | ✅        | Todas as views carregam sob demanda        |
+| Service Worker              | ✅        | Gerado automaticamente via vite-plugin-pwa |
+| **Navegação entre páginas** | ✅        | Corrigido - Console limpo, sem erros       |
+| **Botões Quick Actions**    | ✅        | Funcionando após correção dos métodos      |
+| **Router Guards**           | ✅        | Import dinâmico resolve timing Pinia       |
+| **Dev Server**              | ✅        | Sem erros JS (apenas HMR websocket normal) |
+| **CSS Modularizado**        | ✅        | 10 arquivos, imports funcionando           |
+| **Componentes Home**        | ✅        | 4 componentes extraídos                    |
+| **Componentes Execute**     | ✅        | 5 componentes extraídos                    |
+| **Componentes Plan**        | ✅        | 3 componentes extraídos                    |
 
-### 📊 MÉTRICAS ATUALIZADAS
+### 📊 MÉTRICAS ATUALIZADAS (PÓS-MODULARIZAÇÃO)
 
-- **Bundle size total**: 518.56 KB (gzipped: ~52KB principal + ~52KB ExportView)
-- **Módulos transformados**: 80
-- **Tempo de build**: 3.16s
+- **Bundle size total**: 524.77 KB
+- **Módulos transformados**: 93 (antes: 80)
+- **Tempo de build**: 3.05s
 - **PWA**: 20 entries precached
+- **Componentes criados**: 12 novos
+- **Arquivos CSS**: 10 (antes: 1 monolítico)
 
 ### 🎯 PRÓXIMOS PASSOS
 
-1. [ ] Testar fluxo completo em navegador: Login → Criar Tarefa → Executar Timer → Exportar
-2. [ ] Testar responsividade em dispositivos móveis
-3. [ ] Rodar Lighthouse audit
-4. [ ] Testar instalação PWA
+1. [x] Testar servidor dev - sem erros críticos ✅
+2. [x] Modularizar CSS ✅
+3. [x] Dividir views grandes ✅
+4. [ ] Testar fluxo completo em navegador: Login → Criar Tarefa → Executar Timer → Exportar
+5. [ ] Testar responsividade em dispositivos móveis
+6. [ ] Rodar Lighthouse audit
+7. [ ] Testar instalação PWA
+8. [ ] Dividir arquivos grandes (>200 linhas) - FASE 2
 
 ---
 

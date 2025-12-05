@@ -1,0 +1,195 @@
+/* ============================================
+   CronoFocus - Timeline Agenda Premium
+   ============================================ */
+
+.agenda-timeline {
+  border-radius: 1rem;
+  overflow: hidden;
+  background: linear-gradient(to bottom, var(--glass-bg), transparent);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+}
+
+.timeline-grid {
+  display: grid;
+  grid-template-columns: 60px 1fr;
+  gap: 0;
+}
+
+.timeline-hour {
+  position: relative;
+  height: 60px;
+  border-bottom: 1px solid var(--bg-tertiary);
+}
+
+.time-slot {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 0.75rem 1rem;
+  transition: background var(--transition-fast);
+  min-height: 3.5rem;
+  position: relative;
+}
+
+.time-slot:hover {
+  background: var(--glass-bg);
+}
+
+.time-slot.is-current {
+  background: rgba(99, 102, 241, 0.1);
+  border-left: 3px solid var(--primary);
+}
+
+.timeline-slot {
+  position: relative;
+  min-height: 30px;
+  border-bottom: 1px dashed rgba(51, 65, 85, 0.5);
+  transition: all 0.2s ease;
+}
+
+.timeline-slot:hover {
+  background: rgba(59, 130, 246, 0.1);
+}
+
+.timeline-slot.is-current {
+  background: rgba(59, 130, 246, 0.15);
+  border-left: 3px solid var(--category-work);
+}
+
+/* Task block premium */
+.task-block {
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border-hover);
+  box-shadow: var(--shadow-lg);
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+  margin: 0.25rem;
+  cursor: pointer;
+}
+
+.task-block::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(135deg, currentColor 0%, transparent 100%);
+  opacity: 0.1;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.task-block:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.task-block.dragging {
+  opacity: 0.8;
+  transform: scale(1.02);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Status Colors */
+.task-block.status-planned {
+  border-left: 3px solid var(--status-planned);
+}
+
+.task-block.status-in-progress {
+  border-left: 3px solid var(--status-in-progress);
+  animation: pulse-glow 2s infinite;
+}
+
+.task-block.status-completed {
+  border-left: 3px solid var(--status-completed);
+  opacity: 0.8;
+}
+
+.task-block.status-skipped {
+  border-left: 3px solid var(--status-skipped);
+  opacity: 0.6;
+}
+
+.task-block.status-paused {
+  border-left: 3px solid var(--status-paused);
+}
+
+/* Progress bar */
+.task-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 0 0 8px 8px;
+  transition: width 0.3s ease;
+}
+
+/* Current time line */
+.current-time-line {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #ef4444;
+  z-index: 20;
+}
+
+.current-time-line::before {
+  content: "";
+  position: absolute;
+  left: -6px;
+  top: -5px;
+  width: 12px;
+  height: 12px;
+  background: #ef4444;
+  border-radius: 50%;
+}
+
+/* Timer Ring */
+.timer-ring {
+  width: 300px;
+  height: 300px;
+  position: relative;
+}
+
+.timer-ring svg {
+  transform: rotate(-90deg);
+}
+
+.timer-ring-bg {
+  fill: none;
+  stroke: var(--bg-tertiary);
+  stroke-width: 8;
+}
+
+.timer-ring-progress {
+  fill: none;
+  stroke: var(--primary);
+  stroke-width: 8;
+  stroke-linecap: round;
+  transition: stroke-dashoffset 0.5s ease;
+}
+
+/* Progress Ring */
+.progress-ring {
+  transform: rotate(-90deg);
+  filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.3));
+}
+
+.progress-ring__circle {
+  transition: stroke-dashoffset var(--transition-slow);
+  stroke-linecap: round;
+}
+
+/* Focus Timer Container */
+.focus-timer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+}

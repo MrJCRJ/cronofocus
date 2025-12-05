@@ -1,0 +1,56 @@
+/* ============================================
+   CronoFocus - Glassmorphism Utilities
+   ============================================ */
+
+/* Background Gradient */
+.bg-gradient-premium {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+}
+
+/* Border Glow Effect */
+.border-glow {
+  position: relative;
+}
+
+.border-glow::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0.5;
+}
+
+/* Hover Lift Effect */
+.hover-lift {
+  transition: transform var(--transition-normal);
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+}
+
+/* Drop Zone */
+.drop-zone {
+  position: relative;
+}
+
+.drop-zone.drag-over {
+  background: rgba(59, 130, 246, 0.2);
+  border: 2px dashed var(--primary);
+}
+
+/* Export Mode */
+.export-mode {
+  width: 800px !important;
+  padding: 24px !important;
+  background: var(--bg-primary) !important;
+}
+
+.export-mode .task-block {
+  box-shadow: none !important;
+}
