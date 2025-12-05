@@ -240,7 +240,7 @@ function setDuration(minutes) {
 <template>
   <div class="glass-card overflow-hidden">
     <!-- Header -->
-    <div class="p-5 border-b border-white/10 flex items-center justify-between">
+    <div class="p-5 flex items-center justify-between">
       <h2 class="text-lg font-bold text-white">
         {{ editing ? "✏️ Editar Tarefa" : "➕ Nova Tarefa" }}
       </h2>
@@ -262,7 +262,7 @@ function setDuration(minutes) {
         <input
           v-model="form.title"
           type="text"
-          class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white placeholder-gray-500 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-200"
+          class="w-full bg-white/5 rounded-xl p-4 text-white placeholder-gray-500 focus:ring-2 focus:ring-primary/20 transition-all duration-200"
           placeholder="O que você vai fazer?"
           autofocus
         />
@@ -307,7 +307,7 @@ function setDuration(minutes) {
           >
           <select
             v-model="form.plannedStart"
-            class="w-full bg-white/5 border border-white/10 rounded-xl p-3 text-white focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-200"
+            class="w-full bg-white/5 rounded-xl p-3 text-white focus:ring-2 focus:ring-primary/20 transition-all duration-200"
           >
             <option value="" class="bg-gray-900">Selecione</option>
             <option
@@ -327,7 +327,7 @@ function setDuration(minutes) {
           >
           <select
             v-model="form.plannedEnd"
-            class="w-full bg-white/5 border border-white/10 rounded-xl p-3 text-white focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-200"
+            class="w-full bg-white/5 rounded-xl p-3 text-white focus:ring-2 focus:ring-primary/20 transition-all duration-200"
           >
             <option value="" class="bg-gray-900">Selecione</option>
             <option

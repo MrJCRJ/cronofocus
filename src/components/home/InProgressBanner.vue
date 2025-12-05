@@ -14,12 +14,12 @@ const emit = defineEmits(["continue"]);
 
 <template>
   <div
-    class="mb-6 p-4 rounded-xl glass-card bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/30 animate-pulse-glow"
+    class="mb-6 p-4 rounded-xl glass-card bg-linear-to-r from-amber-500/10 to-orange-500/10 animate-pulse-glow"
   >
     <div class="flex items-center justify-between">
       <div class="flex items-center gap-4">
         <div
-          class="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 flex items-center justify-center shadow-lg shadow-amber-500/30"
+          class="w-12 h-12 rounded-xl bg-linear-to-br from-amber-500 to-orange-500 flex items-center justify-center shadow-lg shadow-amber-500/30"
         >
           <span class="text-2xl">⏱️</span>
         </div>

@@ -70,7 +70,7 @@ const greeting = computed(() => {
 
       <button
         @click="emit('go-today')"
-        class="btn-premium btn-outline-primary px-4 py-2 min-w-[160px] text-sm"
+        class="btn-premium btn-outline-primary px-4 py-2 min-w-40 text-sm"
       >
         {{ formatDate(selectedDate) }}
       </button>

@@ -16,11 +16,11 @@
   transition: all var(--transition-normal);
   transform: translateY(0);
   cursor: pointer;
-  border: 1px solid transparent;
+  border: none;
   position: relative;
   overflow: hidden;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
   user-select: none;
 }
 
@@ -34,7 +34,7 @@
 
 .btn-premium:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.3);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
 }
 
 .btn-premium:disabled {
@@ -47,7 +47,6 @@
 .btn-gradient-primary {
   background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
   color: white;
-  border-color: transparent;
   box-shadow: var(--shadow-md);
 }
 
@@ -59,20 +58,17 @@
 .btn-glass {
   background: var(--glass-bg);
   color: white;
-  border-color: var(--glass-border);
 }
 
 .btn-glass:hover {
   background: var(--glass-bg-hover);
-  border-color: var(--glass-border-hover);
-  box-shadow: var(--shadow-lg), 0 0 20px rgba(255, 255, 255, 0.1);
+  box-shadow: var(--shadow-md);
 }
 
 /* Botão Sucesso (Verde Glow) */
 .btn-gradient-success {
   background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
   color: white;
-  border-color: transparent;
 }
 
 .btn-gradient-success:hover {
@@ -83,7 +79,6 @@
 .btn-gradient-danger {
   background: linear-gradient(135deg, var(--danger) 0%, #dc2626 100%);
   color: white;
-  border-color: transparent;
 }
 
 .btn-gradient-danger:hover {
@@ -94,7 +89,6 @@
 .btn-gradient-warning {
   background: linear-gradient(135deg, var(--warning) 0%, #d97706 100%);
   color: white;
-  border-color: transparent;
 }
 
 .btn-gradient-warning:hover {
@@ -105,12 +99,12 @@
 .btn-outline-primary {
   background: transparent;
   color: var(--primary-light);
-  border: 1px solid rgba(99, 102, 241, 0.3);
+  border: 1px solid rgba(99, 102, 241, 0.2);
 }
 
 .btn-outline-primary:hover {
   background: rgba(99, 102, 241, 0.1);
-  border-color: var(--primary-light);
+  border-color: rgba(99, 102, 241, 0.3);
   box-shadow: var(--shadow-glow);
 }
 
@@ -138,8 +132,7 @@
   background: var(--glass-bg);
   padding: 0.25rem;
   border-radius: 0.75rem;
-  backdrop-filter: blur(8px);
-  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(var(--glass-blur));
 }
 
 .btn-group-glass .btn {

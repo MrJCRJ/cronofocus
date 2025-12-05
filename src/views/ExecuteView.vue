@@ -166,9 +166,9 @@ function goToHome() {
 </script>
 
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900 pt-16">
+  <div class="min-h-screen bg-linear-to-br from-gray-900 via-slate-900 to-gray-900 pt-16">
     <!-- No Task State -->
-    <div v-if="!task" class="min-h-[80vh] flex items-center justify-center">
+    <div v-if="!task" class="min-h-dvh flex items-center justify-center">
       <div class="glass-card p-12 text-center max-w-md animate-fade-in">
         <div class="text-7xl mb-6 animate-pulse-glow">⏱️</div>
         <h2 class="text-2xl font-bold mb-3 text-white">

@@ -104,7 +104,7 @@ const previewData = computed(() => ({
 </script>
 
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900 pt-16">
+  <div class="min-h-screen bg-linear-to-br from-gray-900 via-slate-900 to-gray-900 pt-16">
     <div class="max-w-4xl mx-auto p-4 lg:p-6">
       <!-- Header -->
       <div class="mb-8 animate-fade-in">
@@ -155,7 +155,7 @@ const previewData = computed(() => ({
       <div class="mt-8 glass-card p-6">
         <h3 class="font-semibold mb-4 flex items-center gap-2 text-white"><span>📥</span>Importar Dados</h3>
         <p class="text-gray-400 mb-4">Restaure seus dados a partir de um backup JSON exportado anteriormente.</p>
-        <input type="file" accept=".json" class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-primary file:text-white file:font-medium file:cursor-pointer cursor-pointer" />
+        <input type="file" accept=".json" class="w-full bg-white/5 rounded-xl p-4 text-white file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:bg-primary file:text-white file:font-medium file:cursor-pointer cursor-pointer focus:ring-2 focus:ring-primary/20 transition-all" />
         <p class="text-xs text-gray-500 mt-3">Apenas arquivos JSON exportados pelo CronoFocus são aceitos.</p>
       </div>
     </div>

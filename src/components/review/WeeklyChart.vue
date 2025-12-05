@@ -30,7 +30,7 @@ defineProps({
           <div class="flex items-center gap-3 mb-1.5">
             <div class="flex-1 h-3 bg-gray-800 rounded-full overflow-hidden">
               <div
-                class="h-full bg-gradient-to-r from-primary to-cyan-400 transition-all duration-500"
+                class="h-full bg-linear-to-r from-primary to-cyan-400 transition-all duration-500"
                 :style="{ width: `${day.rate}%` }"
               />
             </div>

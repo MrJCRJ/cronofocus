@@ -73,7 +73,7 @@ const emit = defineEmits(["navigate", "goToCurrentMonth", "update:viewMode"]);
         </button>
         <button
           @click="$emit('goToCurrentMonth')"
-          class="btn-premium btn-glass px-5 py-2.5 min-w-[140px] capitalize font-medium"
+          class="btn-premium btn-glass px-5 py-2.5 min-w-36 capitalize font-medium"
         >
           {{ monthLabel }}
         </button>

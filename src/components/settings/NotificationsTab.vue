@@ -45,7 +45,7 @@ function toggleNotifications() {
               class="sr-only peer"
             />
             <div
-              class="w-12 h-6 bg-gray-700 peer-focus:ring-4 peer-focus:ring-primary/30 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"
+              class="w-12 h-6 bg-gray-700 peer-focus:ring-4 peer-focus:ring-primary/30 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"
             ></div>
           </label>
         </div>
@@ -66,7 +66,7 @@ function toggleNotifications() {
               class="sr-only peer"
             />
             <div
-              class="w-12 h-6 bg-gray-700 peer-focus:ring-4 peer-focus:ring-primary/30 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"
+              class="w-12 h-6 bg-gray-700 peer-focus:ring-4 peer-focus:ring-primary/30 rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-0.5 after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"
             ></div>
           </label>
         </div>
@@ -98,7 +98,7 @@ function toggleNotifications() {
           <select
             :value="settings.reminderMinutes"
             @change="update('reminderMinutes', Number($event.target.value))"
-            class="w-full bg-white/5 border border-white/10 rounded-xl p-3 text-white focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-200"
+            class="w-full bg-white/5 rounded-xl p-3 text-white focus:ring-2 focus:ring-primary/20 transition-all duration-200"
           >
             <option value="1" class="bg-gray-900">1 minuto</option>
             <option value="5" class="bg-gray-900">5 minutos</option>

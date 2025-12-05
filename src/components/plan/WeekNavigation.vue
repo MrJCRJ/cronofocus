@@ -32,7 +32,7 @@ const emit = defineEmits(["navigate", "current"]);
 
     <button
       @click="emit('current')"
-      class="btn-premium btn-glass px-6 py-2.5 min-w-[180px] font-medium"
+      class="btn-premium btn-glass px-6 py-2.5 min-w-44 font-medium"
     >
       {{ weekLabel }}
     </button>

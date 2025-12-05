@@ -146,7 +146,7 @@ function goToExport() {
 
 <template>
   <div
-    class="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900 pt-16"
+    class="min-h-screen bg-linear-to-br from-gray-900 via-slate-900 to-gray-900 pt-16"
   >
     <div class="max-w-4xl mx-auto p-4 lg:p-6">
       <div class="mb-8 animate-fade-in">
@@ -204,7 +204,7 @@ function goToExport() {
               <input
                 v-model="passwordForm.currentPassword"
                 :type="showCurrentPassword ? 'text' : 'password'"
-                class="w-full bg-white/5 border border-white/10 rounded-xl p-3 text-white"
+                class="w-full bg-white/5 rounded-xl p-3 text-white focus:ring-2 focus:ring-primary/20 transition-all"
               />
             </div>
             <div>
@@ -214,7 +214,7 @@ function goToExport() {
               <input
                 v-model="passwordForm.newPassword"
                 :type="showNewPassword ? 'text' : 'password'"
-                class="w-full bg-white/5 border border-white/10 rounded-xl p-3 text-white"
+                class="w-full bg-white/5 rounded-xl p-3 text-white focus:ring-2 focus:ring-primary/20 transition-all"
               />
             </div>
             <div>
@@ -224,7 +224,7 @@ function goToExport() {
               <input
                 v-model="passwordForm.confirmPassword"
                 type="password"
-                class="w-full bg-white/5 border border-white/10 rounded-xl p-3 text-white"
+                class="w-full bg-white/5 rounded-xl p-3 text-white focus:ring-2 focus:ring-primary/20 transition-all"
               />
             </div>
             <button

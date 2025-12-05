@@ -46,7 +46,7 @@ function logout() {
 
 <template>
   <nav
-    class="fixed top-0 left-0 right-0 z-50 bg-gray-900/80 backdrop-blur-xl border-b border-white/10"
+    class="fixed top-0 left-0 right-0 z-50 bg-gray-900/80 backdrop-blur-xl"
   >
     <div class="max-w-7xl mx-auto px-4">
       <div class="flex items-center justify-between h-16">
@@ -54,7 +54,7 @@ function logout() {
         <div class="flex items-center gap-3">
           <button
             @click="showMobileMenu = !showMobileMenu"
-            class="lg:hidden p-2 rounded-xl bg-white/5 hover:bg-white/10 transition-all duration-200 border border-white/10"
+            class="lg:hidden p-2 rounded-xl bg-white/5 hover:bg-white/10 transition-all duration-200"
           >
             <svg
               class="w-6 h-6 text-white"
@@ -81,12 +81,12 @@ function logout() {
 
           <router-link to="/home" class="flex items-center gap-2 group">
             <div
-              class="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/30 group-hover:shadow-indigo-500/50 transition-shadow"
+              class="w-10 h-10 rounded-xl bg-linear-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg shadow-indigo-500/30 group-hover:shadow-indigo-500/50 transition-shadow"
             >
               <span class="text-xl">⏱️</span>
             </div>
             <span
-              class="font-bold text-lg hidden sm:block bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent"
+              class="font-bold text-lg hidden sm:block bg-linear-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent"
             >
               CronoFocus
             </span>
@@ -95,7 +95,7 @@ function logout() {
 
         <!-- Desktop Navigation -->
         <div
-          class="hidden lg:flex items-center gap-1 p-1 bg-white/5 rounded-xl backdrop-blur-sm border border-white/10"
+          class="hidden lg:flex items-center gap-1 p-1 bg-white/5 rounded-xl backdrop-blur-sm"
         >
           <button
             v-for="item in navItems"
@@ -104,7 +104,7 @@ function logout() {
             :class="[
               'px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200',
               isActive(item.path)
-                ? 'bg-gradient-to-r from-indigo-500 to-purple-600 text-white shadow-lg shadow-indigo-500/30'
+                ? 'bg-linear-to-r from-indigo-500 to-purple-600 text-white shadow-lg shadow-indigo-500/30'
                 : 'hover:bg-white/10 text-gray-400 hover:text-white',
             ]"
           >
@@ -117,12 +117,12 @@ function logout() {
         <div class="flex items-center gap-4">
           <!-- Date & Progress -->
           <div
-            class="hidden sm:flex items-center gap-3 px-4 py-2 bg-white/5 rounded-xl border border-white/10"
+            class="hidden sm:flex items-center gap-3 px-4 py-2 bg-white/5 rounded-xl"
           >
             <span class="text-sm text-gray-400">{{ currentDate }}</span>
             <div class="w-24 h-2 bg-gray-700 rounded-full overflow-hidden">
               <div
-                class="h-full bg-gradient-to-r from-emerald-500 to-green-400 transition-all duration-500 rounded-full"
+                class="h-full bg-linear-to-r from-emerald-500 to-green-400 transition-all duration-500 rounded-full"
                 :style="{ width: `${dayProgress}%` }"
               />
             </div>
@@ -135,7 +135,7 @@ function logout() {
           <div class="relative">
             <button
               @click="showUserMenu = !showUserMenu"
-              class="flex items-center gap-2 p-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all duration-200"
+              class="flex items-center gap-2 p-1.5 rounded-xl bg-white/5 hover:bg-white/10 transition-all duration-200"
             >
               <div
                 class="w-8 h-8 rounded-lg flex items-center justify-center text-white font-semibold text-sm shadow-lg"
@@ -172,9 +172,9 @@ function logout() {
             >
               <div
                 v-if="showUserMenu"
-                class="absolute right-0 mt-2 w-56 bg-gray-900/95 backdrop-blur-xl rounded-xl shadow-2xl border border-white/10 py-2 overflow-hidden"
+                class="absolute right-0 mt-2 w-56 bg-gray-900/95 backdrop-blur-xl rounded-xl shadow-2xl py-2 overflow-hidden"
               >
-                <div class="px-4 py-3 border-b border-white/10 bg-white/5">
+                <div class="px-4 py-3 bg-white/5">
                   <p class="font-medium text-white">
                     {{ authStore.user?.displayName }}
                   </p>
@@ -219,7 +219,7 @@ function logout() {
     >
       <div
         v-if="showMobileMenu"
-        class="lg:hidden bg-gray-900/95 backdrop-blur-xl border-t border-white/10 py-2"
+        class="lg:hidden bg-gray-900/95 backdrop-blur-xl py-2"
       >
         <button
           v-for="item in navItems"

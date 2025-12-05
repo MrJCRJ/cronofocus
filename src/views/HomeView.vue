@@ -101,7 +101,7 @@ function goToExport() {
 </script>
 
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 pt-16">
+  <div class="min-h-screen bg-linear-to-br from-gray-900 via-gray-900 to-gray-800 pt-16">
     <div class="max-w-7xl mx-auto p-4 lg:p-6">
       <!-- Header -->
       <HomeHeader
@@ -125,7 +125,7 @@ function goToExport() {
         <!-- Timeline Column -->
         <div class="lg:col-span-3">
           <div class="glass-card overflow-hidden">
-            <div class="p-4 border-b border-white/10 flex items-center justify-between bg-white/5">
+            <div class="p-4 flex items-center justify-between bg-white/5">
               <h2 class="font-semibold flex items-center gap-2 text-white">
                 <span>📅</span>
                 Agenda do Dia

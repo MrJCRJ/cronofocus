@@ -12,7 +12,7 @@ defineProps({
 <template>
   <div>
     <!-- Preview -->
-    <div class="bg-white/5 rounded-xl p-5 border border-white/10">
+    <div class="bg-white/5 rounded-xl p-5">
       <h4 class="font-medium mb-4 text-white flex items-center gap-2">
         <span>📋</span>
         Resumo da Exportação

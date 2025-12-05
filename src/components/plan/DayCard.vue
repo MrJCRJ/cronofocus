@@ -28,7 +28,7 @@ const emit = defineEmits(["add-task", "task-click"]);
     <!-- Day Header -->
     <div
       :class="[
-        'p-3 text-center border-b border-white/10',
+        'p-3 text-center',
         day.isToday ? 'bg-indigo-500/20' : 'bg-white/5',
       ]"
     >
@@ -46,7 +46,7 @@ const emit = defineEmits(["add-task", "task-click"]);
     </div>
 
     <!-- Tasks List -->
-    <div class="p-3 min-h-[200px] max-h-[400px] overflow-y-auto">
+    <div class="p-3 min-h-52 max-h-96 overflow-y-auto">
       <div v-if="day.tasks.length > 0" class="space-y-2">
         <div
           v-for="task in day.tasks"
@@ -90,7 +90,7 @@ const emit = defineEmits(["add-task", "task-click"]);
     </div>
 
     <!-- Add Task Button -->
-    <div class="p-3 border-t border-white/10">
+    <div class="p-3">
       <button
         @click="emit('add-task', day)"
         class="btn-premium btn-glass w-full py-2 text-sm"

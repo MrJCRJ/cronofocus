@@ -101,14 +101,14 @@ function goBack() {
 </script>
 
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900 flex items-center justify-center p-4">
+  <div class="min-h-screen bg-linear-to-br from-gray-900 via-slate-900 to-gray-900 flex items-center justify-center p-4">
     <div class="w-full max-w-md">
       <!-- Logo -->
       <div class="text-center mb-8 animate-fade-in">
-        <div class="inline-flex items-center justify-center w-24 h-24 rounded-3xl bg-gradient-to-br from-primary to-purple-600 shadow-2xl shadow-primary/40 mb-5">
+        <div class="inline-flex items-center justify-center w-24 h-24 rounded-3xl bg-linear-to-br from-primary to-purple-600 shadow-2xl shadow-primary/40 mb-5">
           <span class="text-5xl">⏱️</span>
         </div>
-        <h1 class="text-4xl font-bold bg-gradient-to-r from-primary via-purple-400 to-cyan-400 bg-clip-text text-transparent">
+        <h1 class="text-4xl font-bold bg-linear-to-r from-primary via-purple-400 to-cyan-400 bg-clip-text text-transparent">
           CronoFocus
         </h1>
         <p class="text-gray-400 mt-3">Planejador Temporal Inteligente</p>

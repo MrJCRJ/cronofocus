@@ -57,7 +57,7 @@ function submit() {
           <input
             v-model="password"
             :type="showPassword ? 'text' : 'password'"
-            class="w-full bg-white/5 border border-white/10 rounded-xl p-4 text-white placeholder-gray-500 focus:border-primary/50 focus:ring-2 focus:ring-primary/20 transition-all duration-200 pr-12"
+            class="w-full bg-white/5 rounded-xl p-4 text-white placeholder-gray-500 focus:ring-2 focus:ring-primary/20 transition-all duration-200 pr-12"
             placeholder="Digite sua senha"
             autofocus
           />

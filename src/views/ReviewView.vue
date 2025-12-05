@@ -95,7 +95,7 @@ const dailyCompletionData = computed(() => weekStats.value?.dailyCompletion || [
 </script>
 
 <template>
-  <div class="min-h-screen bg-gradient-to-br from-gray-900 via-slate-900 to-gray-900 pt-16">
+  <div class="min-h-screen bg-linear-to-br from-gray-900 via-slate-900 to-gray-900 pt-16">
     <div class="max-w-7xl mx-auto p-4 lg:p-6">
       <!-- Header -->
       <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-8">

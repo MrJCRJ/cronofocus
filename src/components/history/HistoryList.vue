@@ -28,11 +28,11 @@ const emit = defineEmits(["goToDay"]);
     >
       <!-- Day Header -->
       <div
-        class="p-5 border-b border-white/10 flex items-center justify-between cursor-pointer hover:bg-white/5 transition-all duration-200"
+        class="p-5 flex items-center justify-between cursor-pointer hover:bg-white/5 transition-all duration-200"
         @click="$emit('goToDay', day.date)"
       >
         <div class="flex items-center gap-5">
-          <div class="text-center bg-white/5 rounded-xl p-3 min-w-[60px]">
+          <div class="text-center bg-white/5 rounded-xl p-3 min-w-16">
             <div class="text-2xl font-bold text-white">
               {{ new Date(day.date).getDate() }}
             </div>
@@ -58,11 +58,11 @@ const emit = defineEmits(["goToDay"]);
         <div class="flex items-center gap-4">
           <div class="w-32 h-2 bg-gray-800 rounded-full overflow-hidden">
             <div
-              class="h-full bg-gradient-to-r from-emerald-500 to-cyan-400 transition-all duration-500"
+              class="h-full bg-linear-to-r from-emerald-500 to-cyan-400 transition-all duration-500"
               :style="{ width: `${(day.completed / day.total) * 100}%` }"
             />
           </div>
-          <span class="text-sm font-bold text-white min-w-[40px] text-right">
+          <span class="text-sm font-bold text-white min-w-10 text-right">
             {{ Math.round((day.completed / day.total) * 100) }}%
           </span>
         </div>

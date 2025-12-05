@@ -202,6 +202,101 @@ src/composables/timer/
 | useTimer         | 386      | 80      | -79%     | worker, state, controls, formatting        |
 | **TOTAL**        | **2366** | **367** | **-84%** | **24 módulos**                             |
 
+### 🎨 FASE 4 - REFINAMENTOS DE DESIGN
+
+#### Atualização de Classes Tailwind v4
+
+As classes de gradiente foram atualizadas para a sintaxe moderna do Tailwind CSS v4:
+
+| Classe Antiga        | Classe Nova          | Arquivos Atualizados         |
+| -------------------- | -------------------- | ---------------------------- |
+| `bg-gradient-to-r`   | `bg-linear-to-r`     | Views, NavBar, componentes   |
+| `bg-gradient-to-br`  | `bg-linear-to-br`    | Todas as Views, LoginView    |
+| `min-w-[160px]`      | `min-w-40`           | HomeHeader                   |
+| `min-w-[180px]`      | `min-w-44`           | WeekNavigation               |
+| `min-w-[140px]`      | `min-w-36`           | MonthNavigation              |
+| `min-w-[60px]`       | `min-w-16`           | HistoryList                  |
+| `min-w-[40px]`       | `min-w-10`           | HistoryList                  |
+| `min-h-[200px]`      | `min-h-52`           | DayCard                      |
+| `max-h-[400px]`      | `max-h-96`           | DayCard                      |
+| `min-h-[80vh]`       | `min-h-dvh`          | ExecuteView                  |
+| `after:top-[2px]`    | `after:top-0.5`      | NotificationsTab toggles     |
+| `after:left-[2px]`   | `after:left-0.5`     | NotificationsTab toggles     |
+
+#### Simplificação do Glassmorphism
+
+Variáveis CSS atualizadas em `variables.css`:
+
+```css
+/* Antes */
+--glass-bg: rgba(255, 255, 255, 0.05);
+--glass-bg-hover: rgba(255, 255, 255, 0.08);
+--glass-border: rgba(255, 255, 255, 0.1);
+--glass-border-hover: rgba(255, 255, 255, 0.2);
+
+/* Depois - Mais opaco, menos blur */
+--glass-bg: rgba(30, 41, 59, 0.6);
+--glass-bg-hover: rgba(30, 41, 59, 0.7);
+--glass-border: rgba(255, 255, 255, 0.05);
+--glass-border-hover: rgba(255, 255, 255, 0.08);
+--glass-blur: 8px;
+```
+
+#### Remoção de Bordas Excessivas
+
+Componentes atualizados para design mais limpo:
+
+- **Cards**: Bordas removidas, apenas background sutil
+- **Botões**: `border: none` como padrão
+- **Inputs/Select**: Sem bordas, apenas `focus:ring-2`
+- **NavBar**: Removidas bordas de menu, dropdowns, mobile menu
+- **Modais**: Sem bordas, apenas sombra
+- **Badges**: Sem bordas, apenas background colorido
+
+#### Shadows Mais Sutis
+
+```css
+/* Antes - Muito intensas */
+--shadow-glow: 0 0 20px rgba(99, 102, 241, 0.3);
+
+/* Depois - Mais sutis */
+--shadow-glow: 0 0 15px rgba(99, 102, 241, 0.2);
+--shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08);
+--shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+```
+
+#### Arquivos Modificados na FASE 4
+
+| Arquivo                      | Alterações                                      |
+| ---------------------------- | ----------------------------------------------- |
+| `variables.css`              | Glassmorphism simplificado, shadows reduzidos   |
+| `cards.css`                  | Bordas removidas de .glass-card, badges         |
+| `buttons.css`                | `border: none` em .btn-premium                  |
+| `forms.css`                  | Inputs sem bordas, focus com ring               |
+| `NavBar.vue`                 | Bordas removidas do menu e dropdown             |
+| `HomeView.vue`               | Gradiente atualizado                            |
+| `ExecuteView.vue`            | Gradiente, min-h                                |
+| `PlanView.vue`               | Gradiente atualizado                            |
+| `HistoryView.vue`            | Gradiente atualizado                            |
+| `SettingsView.vue`           | Gradiente, inputs sem bordas                    |
+| `LoginView.vue`              | Gradientes atualizados (3)                      |
+| `ReviewView.vue`             | Gradiente atualizado                            |
+| `ExportView.vue`             | Gradiente, input file                           |
+| `InProgressBanner.vue`       | Borda removida, gradientes                      |
+| `WeeklyChart.vue`            | Gradiente da barra                              |
+| `AgendaTimeline.vue`         | Gradientes de progresso                         |
+| `HomeHeader.vue`             | min-w-40                                        |
+| `WeekNavigation.vue`         | min-w-44                                        |
+| `DayCard.vue`                | min-h, max-h, bordas removidas                  |
+| `MonthNavigation.vue`        | min-w-36                                        |
+| `HistoryList.vue`            | min-w, gradiente, bordas                        |
+| `NotificationsTab.vue`       | after:top-0.5, select sem borda                 |
+| `ProfileTab.vue`             | Input sem borda                                 |
+| `LoginForm.vue`              | Input sem borda                                 |
+| `TaskForm.vue`               | Header e inputs sem bordas                      |
+| `ExportPreview.vue`          | Preview sem borda                               |
+| `FormatSelector.vue`         | Seletor com ring ao invés de border             |
+
 ### 🐛 BUGS ENCONTRADOS E CORRIGIDOS
 
 1. **Sons de notificação faltando**
@@ -258,14 +353,15 @@ src/composables/timer/
 | **Componentes Login**         | ✅        | 3 componentes extraídos                    |
 | **Componentes Review**        | ✅        | 4 componentes extraídos                    |
 | **Componentes Export**        | ✅        | 3 componentes extraídos                    |
-| **Build Final**               | ✅        | 127 módulos, 532.93 KB                     |
+| **Build Final**               | ✅        | 133 módulos, 531.98 KB                     |
 | **Composables Modularizados** | ✅        | 5 composables → 24 módulos                 |
+| **Design Refinement**         | ✅        | Tailwind v4, bordas removidas, glassmorphism|
 
-### 📊 MÉTRICAS ATUALIZADAS (PÓS-MODULARIZAÇÃO COMPLETA)
+### 📊 MÉTRICAS ATUALIZADAS (PÓS-REFINAMENTO DE DESIGN)
 
-- **Bundle size total**: 532.93 KB
-- **Módulos transformados**: 127 (antes: 80 → 93 → 111 → 127)
-- **Tempo de build**: 3.18s
+- **Bundle size total**: 531.98 KB (reduzido de 532.93 KB)
+- **Módulos transformados**: 133 (antes: 80 → 93 → 111 → 127 → 133)
+- **Tempo de build**: 3.06s
 - **PWA**: 20 entries precached
 - **Componentes Vue criados**: 30 novos
 - **Módulos JS criados**: 24 novos (composables)
@@ -279,10 +375,11 @@ src/composables/timer/
 2. [x] Modularizar CSS ✅
 3. [x] Dividir views grandes - FASE 2 COMPLETA ✅
 4. [x] Modularizar composables - FASE 3 COMPLETA ✅
-5. [ ] Testar fluxo completo em navegador: Login → Criar Tarefa → Executar Timer → Exportar
-6. [ ] Testar responsividade em dispositivos móveis
-7. [ ] Rodar Lighthouse audit
-8. [ ] Testar instalação PWA
+5. [x] Refinar design - FASE 4 COMPLETA ✅
+6. [ ] Testar fluxo completo em navegador: Login → Criar Tarefa → Executar Timer → Exportar
+7. [ ] Testar responsividade em dispositivos móveis
+8. [ ] Rodar Lighthouse audit
+9. [ ] Testar instalação PWA
 
 ---
 
@@ -743,35 +840,43 @@ npm run preview
 
    - `bg-slate-800/80` ou `bg-slate-900/90` para backgrounds
    - `backdrop-blur-xl` para efeito glass
-   - `border border-white/10` para bordas sutis
-   - `shadow-xl` com custom glow effects
+   - `bg-white/5` para backgrounds sutis
+   - `shadow-lg` com custom glow effects sutis
 
-3. **Estrutura de Botões**
+3. **Estrutura de Botões (atualizado para Tailwind v4)**
 
    ```html
    <!-- Botão primário -->
    <button
-     class="px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 
-                  rounded-xl font-semibold shadow-lg shadow-indigo-500/30 
-                  hover:shadow-indigo-500/50 transform hover:scale-105 
+     class="px-6 py-3 bg-linear-to-r from-indigo-600 to-purple-600 
+                  rounded-xl font-semibold shadow-lg shadow-indigo-500/20 
+                  hover:shadow-indigo-500/30 transform hover:scale-105 
                   transition-all duration-300"
    >
      Texto
    </button>
    ```
 
-4. **Cards Glass**
+4. **Cards Glass (sem bordas)**
 
    ```html
    <div
-     class="bg-slate-800/80 backdrop-blur-xl rounded-2xl 
-               border border-white/10 p-6 shadow-xl"
+     class="glass-card p-6"
    >
      Conteúdo
    </div>
    ```
 
-5. **Tailwind v4** - Algumas classes como `bg-gradient-to-r` podem mostrar warnings sugerindo `bg-linear-to-r`. Ambas funcionam.
+   Ou manualmente:
+   ```html
+   <div
+     class="bg-slate-800/60 backdrop-blur-sm rounded-2xl p-6 shadow-lg"
+   >
+     Conteúdo
+   </div>
+   ```
+
+5. **Tailwind v4** - Use a sintaxe moderna `bg-linear-to-r` ao invés de `bg-gradient-to-r`.
 
 ### Prioridades
 
