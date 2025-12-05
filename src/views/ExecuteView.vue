@@ -3,170 +3,174 @@
  * ExecuteView - Timer de execução refatorado
  * Componentes: TimerDisplay, TimerControls, SessionStats, DistractionModal, CompletionModal
  */
-import { ref, computed, onMounted, onUnmounted } from 'vue'
-import { useRouter, useRoute } from 'vue-router'
-import { useTimeStore } from '@/stores/timeStore'
-import { useSettingsStore } from '@/stores/settingsStore'
-import { useTimer } from '@/composables/useTimer'
-import { useNotifications } from '@/composables/useNotifications'
+import { ref, computed, onMounted, onUnmounted } from "vue";
+import { useRouter, useRoute } from "vue-router";
+import { useTimeStore } from "@/stores/timeStore";
+import { useSettingsStore } from "@/stores/settingsStore";
+import { useTimer } from "@/composables/useTimer";
+import { useNotifications } from "@/composables/useNotifications";
 
 // Componentes
-import TimerDisplay from '@/components/execute/TimerDisplay.vue'
-import TimerControls from '@/components/execute/TimerControls.vue'
-import SessionStats from '@/components/execute/SessionStats.vue'
-import DistractionModal from '@/components/execute/DistractionModal.vue'
-import CompletionModal from '@/components/execute/CompletionModal.vue'
+import TimerDisplay from "@/components/execute/TimerDisplay.vue";
+import TimerControls from "@/components/execute/TimerControls.vue";
+import SessionStats from "@/components/execute/SessionStats.vue";
+import DistractionModal from "@/components/execute/DistractionModal.vue";
+import CompletionModal from "@/components/execute/CompletionModal.vue";
 
-const router = useRouter()
-const route = useRoute()
-const timeStore = useTimeStore()
-const settingsStore = useSettingsStore()
-const timer = useTimer()
-const notifications = useNotifications()
+const router = useRouter();
+const route = useRoute();
+const timeStore = useTimeStore();
+const settingsStore = useSettingsStore();
+const timer = useTimer();
+const notifications = useNotifications();
 
 // Estado
-const task = ref(null)
-const showDistractionModal = ref(false)
-const showCompletionModal = ref(false)
+const task = ref(null);
+const showDistractionModal = ref(false);
+const showCompletionModal = ref(false);
 
 // Lifecycle
 onMounted(async () => {
-  await timeStore.loadDayTasks()
+  await timeStore.loadDayTasks();
 
   if (route.params.taskId) {
-    task.value = timeStore.tasks.find(t => t.id === route.params.taskId)
+    task.value = timeStore.tasks.find((t) => t.id === route.params.taskId);
 
-    if (task.value && task.value.status === 'planned') {
-      await timeStore.startTask(task.value.id)
-      task.value = timeStore.tasks.find(t => t.id === route.params.taskId)
-      startTimer()
-    } else if (task.value && task.value.status === 'in-progress') {
-      resumeTimer()
+    if (task.value && task.value.status === "planned") {
+      await timeStore.startTask(task.value.id);
+      task.value = timeStore.tasks.find((t) => t.id === route.params.taskId);
+      startTimer();
+    } else if (task.value && task.value.status === "in-progress") {
+      resumeTimer();
     }
   } else {
-    task.value = timeStore.taskInProgress
+    task.value = timeStore.taskInProgress;
     if (task.value) {
-      resumeTimer()
+      resumeTimer();
     }
   }
 
   timer.setCallbacks({
     onFinished: handleTimerFinished,
-    onWarning: handleWarning
-  })
+    onWarning: handleWarning,
+  });
 
-  notifications.init()
-})
+  notifications.init();
+});
 
 onUnmounted(() => {
-  timer.clearCallbacks()
-})
+  timer.clearCallbacks();
+});
 
 // Computed
 const category = computed(() => {
-  if (!task.value) return null
-  return timeStore.categories.find(c => c.id === task.value.category) || {
-    name: 'Tarefa',
-    color: '#6b7280',
-    icon: '📌'
-  }
-})
+  if (!task.value) return null;
+  return (
+    timeStore.categories.find((c) => c.id === task.value.category) || {
+      name: "Tarefa",
+      color: "#6b7280",
+      icon: "📌",
+    }
+  );
+});
 
-const distractionCount = computed(() => task.value?.distractions?.length || 0)
+const distractionCount = computed(() => task.value?.distractions?.length || 0);
 
 // Timer methods
 function startTimer() {
-  if (!task.value) return
-  const duration = task.value.plannedDuration || 30
-  timer.startMinutes(duration)
+  if (!task.value) return;
+  const duration = task.value.plannedDuration || 30;
+  timer.startMinutes(duration);
 }
 
 function resumeTimer() {
-  if (!task.value || !task.value.actualStart) return
+  if (!task.value || !task.value.actualStart) return;
 
-  const startTime = new Date(task.value.actualStart)
-  const now = new Date()
-  const elapsedSeconds = Math.floor((now - startTime) / 1000)
-  const plannedSeconds = (task.value.plannedDuration || 30) * 60
-  const remainingSeconds = Math.max(0, plannedSeconds - elapsedSeconds)
+  const startTime = new Date(task.value.actualStart);
+  const now = new Date();
+  const elapsedSeconds = Math.floor((now - startTime) / 1000);
+  const plannedSeconds = (task.value.plannedDuration || 30) * 60;
+  const remainingSeconds = Math.max(0, plannedSeconds - elapsedSeconds);
 
   if (remainingSeconds > 0) {
-    timer.start(remainingSeconds, task.value.id)
+    timer.start(remainingSeconds, task.value.id);
   } else {
-    handleTimerFinished()
+    handleTimerFinished();
   }
 }
 
 function toggleTimer() {
   if (timer.isPaused.value) {
-    timer.resume()
+    timer.resume();
   } else {
-    timer.pause()
+    timer.pause();
   }
 }
 
 async function handleTimerFinished() {
-  await notifications.notifyTimerEnd(task.value)
-  notifications.playSound('timerEnd')
-  showCompletionModal.value = true
+  await notifications.notifyTimerEnd(task.value);
+  notifications.playSound("timerEnd");
+  showCompletionModal.value = true;
 }
 
 function handleWarning(minutes) {
-  notifications.playSound('taskReminder')
+  notifications.playSound("taskReminder");
 }
 
 function addMoreTime(minutes) {
-  timer.addMinutes(minutes)
+  timer.addMinutes(minutes);
 }
 
 // Distraction handling
 async function handleDistraction(note) {
-  if (!task.value) return
+  if (!task.value) return;
 
   await timeStore.addDistraction(task.value.id, {
     note: note,
-    duration: null
-  })
+    duration: null,
+  });
 
-  showDistractionModal.value = false
+  showDistractionModal.value = false;
 }
 
 // Completion handling
 async function handleComplete({ rating, notes }) {
-  if (!task.value) return
+  if (!task.value) return;
 
-  timer.stop()
+  timer.stop();
 
   await timeStore.completeTask(task.value.id, {
     rating,
     completionNotes: notes,
-    actualDuration: timer.elapsedMinutes.value
-  })
+    actualDuration: timer.elapsedMinutes.value,
+  });
 
   await notifications.notifyTaskComplete(task.value, {
-    duration: timer.elapsedMinutes.value
-  })
+    duration: timer.elapsedMinutes.value,
+  });
 
-  showCompletionModal.value = false
-  router.push('/home')
+  showCompletionModal.value = false;
+  router.push("/home");
 }
 
 async function skipTask() {
-  if (!task.value) return
+  if (!task.value) return;
 
-  timer.stop()
-  await timeStore.skipTask(task.value.id, 'Pulada durante execução')
-  showCompletionModal.value = false
-  router.push('/home')
+  timer.stop();
+  await timeStore.skipTask(task.value.id, "Pulada durante execução");
+  showCompletionModal.value = false;
+  router.push("/home");
 }
 
 function goToHome() {
-  router.push('/home')
+  router.push("/home");
 }
 </script>
 
 <template>
-  <div class="min-h-screen bg-linear-to-br from-gray-900 via-slate-900 to-gray-900 pt-16">
+  <div
+    class="min-h-screen bg-linear-to-br from-gray-900 via-slate-900 to-gray-900 pt-16"
+  >
     <!-- No Task State -->
     <div v-if="!task" class="min-h-dvh flex items-center justify-center">
       <div class="glass-card p-12 text-center max-w-md animate-fade-in">
@@ -196,7 +200,7 @@ function goToHome() {
           :style="{
             backgroundColor: category?.color + '25',
             borderColor: category?.color + '50',
-            color: category?.color
+            color: category?.color,
           }"
         >
           <span class="text-lg">{{ category?.icon }}</span>

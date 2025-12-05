@@ -208,20 +208,20 @@ src/composables/timer/
 
 As classes de gradiente foram atualizadas para a sintaxe moderna do Tailwind CSS v4:
 
-| Classe Antiga        | Classe Nova          | Arquivos Atualizados         |
-| -------------------- | -------------------- | ---------------------------- |
-| `bg-gradient-to-r`   | `bg-linear-to-r`     | Views, NavBar, componentes   |
-| `bg-gradient-to-br`  | `bg-linear-to-br`    | Todas as Views, LoginView    |
-| `min-w-[160px]`      | `min-w-40`           | HomeHeader                   |
-| `min-w-[180px]`      | `min-w-44`           | WeekNavigation               |
-| `min-w-[140px]`      | `min-w-36`           | MonthNavigation              |
-| `min-w-[60px]`       | `min-w-16`           | HistoryList                  |
-| `min-w-[40px]`       | `min-w-10`           | HistoryList                  |
-| `min-h-[200px]`      | `min-h-52`           | DayCard                      |
-| `max-h-[400px]`      | `max-h-96`           | DayCard                      |
-| `min-h-[80vh]`       | `min-h-dvh`          | ExecuteView                  |
-| `after:top-[2px]`    | `after:top-0.5`      | NotificationsTab toggles     |
-| `after:left-[2px]`   | `after:left-0.5`     | NotificationsTab toggles     |
+| Classe Antiga       | Classe Nova       | Arquivos Atualizados       |
+| ------------------- | ----------------- | -------------------------- |
+| `bg-gradient-to-r`  | `bg-linear-to-r`  | Views, NavBar, componentes |
+| `bg-gradient-to-br` | `bg-linear-to-br` | Todas as Views, LoginView  |
+| `min-w-[160px]`     | `min-w-40`        | HomeHeader                 |
+| `min-w-[180px]`     | `min-w-44`        | WeekNavigation             |
+| `min-w-[140px]`     | `min-w-36`        | MonthNavigation            |
+| `min-w-[60px]`      | `min-w-16`        | HistoryList                |
+| `min-w-[40px]`      | `min-w-10`        | HistoryList                |
+| `min-h-[200px]`     | `min-h-52`        | DayCard                    |
+| `max-h-[400px]`     | `max-h-96`        | DayCard                    |
+| `min-h-[80vh]`      | `min-h-dvh`       | ExecuteView                |
+| `after:top-[2px]`   | `after:top-0.5`   | NotificationsTab toggles   |
+| `after:left-[2px]`  | `after:left-0.5`  | NotificationsTab toggles   |
 
 #### Simplificação do Glassmorphism
 
@@ -267,35 +267,35 @@ Componentes atualizados para design mais limpo:
 
 #### Arquivos Modificados na FASE 4
 
-| Arquivo                      | Alterações                                      |
-| ---------------------------- | ----------------------------------------------- |
-| `variables.css`              | Glassmorphism simplificado, shadows reduzidos   |
-| `cards.css`                  | Bordas removidas de .glass-card, badges         |
-| `buttons.css`                | `border: none` em .btn-premium                  |
-| `forms.css`                  | Inputs sem bordas, focus com ring               |
-| `NavBar.vue`                 | Bordas removidas do menu e dropdown             |
-| `HomeView.vue`               | Gradiente atualizado                            |
-| `ExecuteView.vue`            | Gradiente, min-h                                |
-| `PlanView.vue`               | Gradiente atualizado                            |
-| `HistoryView.vue`            | Gradiente atualizado                            |
-| `SettingsView.vue`           | Gradiente, inputs sem bordas                    |
-| `LoginView.vue`              | Gradientes atualizados (3)                      |
-| `ReviewView.vue`             | Gradiente atualizado                            |
-| `ExportView.vue`             | Gradiente, input file                           |
-| `InProgressBanner.vue`       | Borda removida, gradientes                      |
-| `WeeklyChart.vue`            | Gradiente da barra                              |
-| `AgendaTimeline.vue`         | Gradientes de progresso                         |
-| `HomeHeader.vue`             | min-w-40                                        |
-| `WeekNavigation.vue`         | min-w-44                                        |
-| `DayCard.vue`                | min-h, max-h, bordas removidas                  |
-| `MonthNavigation.vue`        | min-w-36                                        |
-| `HistoryList.vue`            | min-w, gradiente, bordas                        |
-| `NotificationsTab.vue`       | after:top-0.5, select sem borda                 |
-| `ProfileTab.vue`             | Input sem borda                                 |
-| `LoginForm.vue`              | Input sem borda                                 |
-| `TaskForm.vue`               | Header e inputs sem bordas                      |
-| `ExportPreview.vue`          | Preview sem borda                               |
-| `FormatSelector.vue`         | Seletor com ring ao invés de border             |
+| Arquivo                | Alterações                                    |
+| ---------------------- | --------------------------------------------- |
+| `variables.css`        | Glassmorphism simplificado, shadows reduzidos |
+| `cards.css`            | Bordas removidas de .glass-card, badges       |
+| `buttons.css`          | `border: none` em .btn-premium                |
+| `forms.css`            | Inputs sem bordas, focus com ring             |
+| `NavBar.vue`           | Bordas removidas do menu e dropdown           |
+| `HomeView.vue`         | Gradiente atualizado                          |
+| `ExecuteView.vue`      | Gradiente, min-h                              |
+| `PlanView.vue`         | Gradiente atualizado                          |
+| `HistoryView.vue`      | Gradiente atualizado                          |
+| `SettingsView.vue`     | Gradiente, inputs sem bordas                  |
+| `LoginView.vue`        | Gradientes atualizados (3)                    |
+| `ReviewView.vue`       | Gradiente atualizado                          |
+| `ExportView.vue`       | Gradiente, input file                         |
+| `InProgressBanner.vue` | Borda removida, gradientes                    |
+| `WeeklyChart.vue`      | Gradiente da barra                            |
+| `AgendaTimeline.vue`   | Gradientes de progresso                       |
+| `HomeHeader.vue`       | min-w-40                                      |
+| `WeekNavigation.vue`   | min-w-44                                      |
+| `DayCard.vue`          | min-h, max-h, bordas removidas                |
+| `MonthNavigation.vue`  | min-w-36                                      |
+| `HistoryList.vue`      | min-w, gradiente, bordas                      |
+| `NotificationsTab.vue` | after:top-0.5, select sem borda               |
+| `ProfileTab.vue`       | Input sem borda                               |
+| `LoginForm.vue`        | Input sem borda                               |
+| `TaskForm.vue`         | Header e inputs sem bordas                    |
+| `ExportPreview.vue`    | Preview sem borda                             |
+| `FormatSelector.vue`   | Seletor com ring ao invés de border           |
 
 ### 🐛 BUGS ENCONTRADOS E CORRIGIDOS
 
@@ -334,28 +334,28 @@ Componentes atualizados para design mais limpo:
 
 ### 🧪 TESTES REALIZADOS
 
-| Teste                         | Resultado | Observações                                |
-| ----------------------------- | --------- | ------------------------------------------ |
-| IndexedDB inicialização       | ✅        | Todos os stores criados                    |
-| Build de produção             | ✅        | 524KB gzipped, PWA configurado             |
-| Lazy loading views            | ✅        | Todas as views carregam sob demanda        |
-| Service Worker                | ✅        | Gerado automaticamente via vite-plugin-pwa |
-| **Navegação entre páginas**   | ✅        | Corrigido - Console limpo, sem erros       |
-| **Botões Quick Actions**      | ✅        | Funcionando após correção dos métodos      |
-| **Router Guards**             | ✅        | Import dinâmico resolve timing Pinia       |
-| **Dev Server**                | ✅        | Sem erros JS (apenas HMR websocket normal) |
-| **CSS Modularizado**          | ✅        | 10 arquivos, imports funcionando           |
-| **Componentes Home**          | ✅        | 4 componentes extraídos                    |
-| **Componentes Execute**       | ✅        | 5 componentes extraídos                    |
-| **Componentes Plan**          | ✅        | 3 componentes extraídos                    |
-| **Componentes Settings**      | ✅        | 4 componentes extraídos                    |
-| **Componentes History**       | ✅        | 4 componentes extraídos                    |
-| **Componentes Login**         | ✅        | 3 componentes extraídos                    |
-| **Componentes Review**        | ✅        | 4 componentes extraídos                    |
-| **Componentes Export**        | ✅        | 3 componentes extraídos                    |
-| **Build Final**               | ✅        | 133 módulos, 531.98 KB                     |
-| **Composables Modularizados** | ✅        | 5 composables → 24 módulos                 |
-| **Design Refinement**         | ✅        | Tailwind v4, bordas removidas, glassmorphism|
+| Teste                         | Resultado | Observações                                  |
+| ----------------------------- | --------- | -------------------------------------------- |
+| IndexedDB inicialização       | ✅        | Todos os stores criados                      |
+| Build de produção             | ✅        | 524KB gzipped, PWA configurado               |
+| Lazy loading views            | ✅        | Todas as views carregam sob demanda          |
+| Service Worker                | ✅        | Gerado automaticamente via vite-plugin-pwa   |
+| **Navegação entre páginas**   | ✅        | Corrigido - Console limpo, sem erros         |
+| **Botões Quick Actions**      | ✅        | Funcionando após correção dos métodos        |
+| **Router Guards**             | ✅        | Import dinâmico resolve timing Pinia         |
+| **Dev Server**                | ✅        | Sem erros JS (apenas HMR websocket normal)   |
+| **CSS Modularizado**          | ✅        | 10 arquivos, imports funcionando             |
+| **Componentes Home**          | ✅        | 4 componentes extraídos                      |
+| **Componentes Execute**       | ✅        | 5 componentes extraídos                      |
+| **Componentes Plan**          | ✅        | 3 componentes extraídos                      |
+| **Componentes Settings**      | ✅        | 4 componentes extraídos                      |
+| **Componentes History**       | ✅        | 4 componentes extraídos                      |
+| **Componentes Login**         | ✅        | 3 componentes extraídos                      |
+| **Componentes Review**        | ✅        | 4 componentes extraídos                      |
+| **Componentes Export**        | ✅        | 3 componentes extraídos                      |
+| **Build Final**               | ✅        | 133 módulos, 531.98 KB                       |
+| **Composables Modularizados** | ✅        | 5 composables → 24 módulos                   |
+| **Design Refinement**         | ✅        | Tailwind v4, bordas removidas, glassmorphism |
 
 ### 📊 MÉTRICAS ATUALIZADAS (PÓS-REFINAMENTO DE DESIGN)
 
@@ -860,18 +860,13 @@ npm run preview
 4. **Cards Glass (sem bordas)**
 
    ```html
-   <div
-     class="glass-card p-6"
-   >
-     Conteúdo
-   </div>
+   <div class="glass-card p-6">Conteúdo</div>
    ```
 
    Ou manualmente:
+
    ```html
-   <div
-     class="bg-slate-800/60 backdrop-blur-sm rounded-2xl p-6 shadow-lg"
-   >
+   <div class="bg-slate-800/60 backdrop-blur-sm rounded-2xl p-6 shadow-lg">
      Conteúdo
    </div>
    ```
