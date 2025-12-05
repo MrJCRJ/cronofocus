@@ -1,167 +1,331 @@
-# 🎯 CronoFocus - Documentação do Projeto
+# 🎯 CronoFocus - Documentação do Projeto# 🎯 CronoFocus - Documentação do Projeto
 
----
 
-## 🔄 RELATÓRIO DE PROGRESSO - Sessão Atual
 
-### ✅ CONCLUÍDO
+> PWA de agenda temporal inteligente para planejamento, execução e análise de atividades diárias.---
 
-- [x] Revisão completa do código e identificação de pontos de integração
-- [x] useTimer.js - Web Worker funcional com fallback
-- [x] useIndexedDB.js - CRUD completo, queries por período, índices
-- [x] useNotifications.js - Fallback com AudioContext/beep programático
-- [x] Stores Pinia integrados com views
-- [x] Build de produção bem-sucedido (518KB total)
-- [x] **CORREÇÃO DE BUG CRÍTICO**: Navegação com router.push nos templates
-- [x] **CORREÇÃO DE BUG CRÍTICO**: Router guard usando import dinâmico para authStore
+
+
+---## 🔄 RELATÓRIO DE PROGRESSO - Sessão Atual
+
+
+
+## 📊 Status Atual### ✅ CONCLUÍDO
+
+
+
+| Métrica | Valor |- [x] Revisão completa do código e identificação de pontos de integração
+
+|---------|-------|- [x] useTimer.js - Web Worker funcional com fallback
+
+| **Build** | ✅ 133 módulos, 532 KB |- [x] useIndexedDB.js - CRUD completo, queries por período, índices
+
+| **Tempo de build** | ~3.06s |- [x] useNotifications.js - Fallback com AudioContext/beep programático
+
+| **PWA** | 20 entries precached |- [x] Stores Pinia integrados com views
+
+| **Componentes Vue** | 30+ |- [x] Build de produção bem-sucedido (518KB total)
+
+| **Módulos JS** | 24 (composables) |- [x] **CORREÇÃO DE BUG CRÍTICO**: Navegação com router.push nos templates
+
+| **Arquivos CSS** | 10 modulares |- [x] **CORREÇÃO DE BUG CRÍTICO**: Router guard usando import dinâmico para authStore
+
 - [x] **CORREÇÃO DE BUG CRÍTICO**: IndexedDB clonagem de Vue Proxies
-- [x] Remoção de arquivo não utilizado (HelloWorld.vue)
+
+### Fases Concluídas- [x] Remoção de arquivo não utilizado (HelloWorld.vue)
+
 - [x] Servidor dev rodando sem erros JavaScript críticos
 
-### 🏗️ FASE 2 - MODULARIZAÇÃO COMPLETA
+- ✅ **FASE 1**: Estrutura base, stores, composables
 
-#### CSS Modularizado (1085 → 10 arquivos)
+- ✅ **FASE 2**: Modularização de Views (60% redução)### 🏗️ FASE 2 - MODULARIZAÇÃO COMPLETA
 
-```
+- ✅ **FASE 3**: Modularização de Composables (84% redução)
+
+- ✅ **FASE 4**: Refinamento de Design (Tailwind v4)#### CSS Modularizado (1085 → 10 arquivos)
+
+
+
+---```
+
 src/assets/css/
-├── base/
+
+## 🛠️ Stack Tecnológica├── base/
+
 │   ├── reset.css          # 58 linhas
-│   ├── variables.css      # 75 linhas
-│   └── typography.css     # 82 linhas
-├── components/
-│   ├── buttons.css        # 166 linhas
-│   ├── cards.css          # 97 linhas
-│   ├── forms.css          # 108 linhas
-│   └── timeline.css       # 175 linhas
-├── utilities/
+
+| Tecnologia | Versão | Propósito |│   ├── variables.css      # 75 linhas
+
+|------------|--------|-----------|│   └── typography.css     # 82 linhas
+
+| Vue.js | 3.5.24 | Framework (Composition API) |├── components/
+
+| Vite | 7.2.x | Build tool |│   ├── buttons.css        # 166 linhas
+
+| Tailwind CSS | 4.1.17 | Estilização |│   ├── cards.css          # 97 linhas
+
+| DaisyUI | 5.5.8 | Componentes base |│   ├── forms.css          # 108 linhas
+
+| Pinia | 3.0.4 | State management |│   └── timeline.css       # 175 linhas
+
+| Vue Router | 4.6.3 | Roteamento SPA |├── utilities/
+
 │   ├── animations.css     # 120 linhas
-│   ├── glassmorphism.css  # 53 linhas
+
+---│   ├── glassmorphism.css  # 53 linhas
+
 │   └── layouts.css        # 48 linhas
-└── main.css               # 21 linhas (imports apenas)
-```
 
-#### HomeView Modularizado (335 → 175 linhas)
+## 📁 Estrutura do Projeto└── main.css               # 21 linhas (imports apenas)
 
 ```
-src/components/home/
-├── HomeHeader.vue         # 78 linhas
-├── QuickActions.vue       # 50 linhas
-├── InProgressBanner.vue   # 42 linhas
-└── CategoriesLegend.vue   # 37 linhas
-```
-
-#### ExecuteView Modularizado (559 → 260 linhas)
 
 ```
-src/components/execute/
-├── TimerDisplay.vue       # 98 linhas
-├── TimerControls.vue      # 79 linhas
-├── SessionStats.vue       # 35 linhas
-├── DistractionModal.vue   # 68 linhas
-└── CompletionModal.vue    # 145 linhas
-```
 
-#### PlanView Modularizado (339 → 160 linhas)
+src/#### HomeView Modularizado (335 → 175 linhas)
 
-```
-src/components/plan/
-├── WeekNavigation.vue     # 40 linhas
-├── DayCard.vue            # 99 linhas
-└── PlanningTips.vue       # 36 linhas
-```
+├── assets/css/           # CSS Modular (10 arquivos)
 
-#### SettingsView Modularizado (614 → 202 linhas)
+│   ├── base/             # reset, variables, typography```
 
-```
-src/components/settings/
-├── ProfileTab.vue         # ~160 linhas (edição de perfil)
-├── PreferencesTab.vue     # ~100 linhas (preferências de tempo)
+│   ├── components/       # buttons, cards, forms, timelinesrc/components/home/
+
+│   └── utilities/        # animations, glassmorphism, layouts├── HomeHeader.vue         # 78 linhas
+
+├── components/           # 30+ componentes Vue├── QuickActions.vue       # 50 linhas
+
+│   ├── agenda/           # Timeline, TaskForm├── InProgressBanner.vue   # 42 linhas
+
+│   ├── execute/          # Timer, Controls, Modals└── CategoriesLegend.vue   # 37 linhas
+
+│   ├── export/           # Format, DateRange, Preview```
+
+│   ├── history/          # Calendar, List, Navigation
+
+│   ├── home/             # Header, Actions, Banner#### ExecuteView Modularizado (559 → 260 linhas)
+
+│   ├── layout/           # NavBar
+
+│   ├── login/            # Profile, Login, Register```
+
+│   ├── plan/             # Week, DayCard, Tipssrc/components/execute/
+
+│   ├── review/           # Stats, Charts, Insights├── TimerDisplay.vue       # 98 linhas
+
+│   └── settings/         # Profile, Preferences, Notifications├── TimerControls.vue      # 79 linhas
+
+├── composables/          # 5 composables → 24 módulos├── SessionStats.vue       # 35 linhas
+
+│   ├── auth/             # crypto, session, profiles├── DistractionModal.vue   # 68 linhas
+
+│   ├── db/               # schema, crud, entities, stats└── CompletionModal.vue    # 145 linhas
+
+│   ├── export/           # csv, json, png, report```
+
+│   ├── notifications/    # audio, push, tasks, scheduler
+
+│   └── timer/            # worker, state, controls, formatting#### PlanView Modularizado (339 → 160 linhas)
+
+├── stores/               # Pinia stores
+
+│   ├── authStore.js```
+
+│   ├── settingsStore.jssrc/components/plan/
+
+│   └── timeStore.js├── WeekNavigation.vue     # 40 linhas
+
+└── views/                # 8 views principais├── DayCard.vue            # 99 linhas
+
+    ├── HomeView.vue      # Dashboard└── PlanningTips.vue       # 36 linhas
+
+    ├── PlanView.vue      # Planejamento semanal```
+
+    ├── ExecuteView.vue   # Timer de execução
+
+    ├── ReviewView.vue    # Análise e métricas#### SettingsView Modularizado (614 → 202 linhas)
+
+    ├── HistoryView.vue   # Histórico
+
+    ├── ExportView.vue    # Exportação```
+
+    ├── SettingsView.vue  # Configuraçõessrc/components/settings/
+
+    └── LoginView.vue     # Autenticação├── ProfileTab.vue         # ~160 linhas (edição de perfil)
+
+```├── PreferencesTab.vue     # ~100 linhas (preferências de tempo)
+
 ├── NotificationsTab.vue   # ~95 linhas (configuração de notificações)
-└── DataTab.vue            # ~50 linhas (gerenciamento de dados)
+
+---└── DataTab.vue            # ~50 linhas (gerenciamento de dados)
+
 ```
+
+## 🎨 Sistema de Design
 
 #### HistoryView Modularizado (450 → 148 linhas)
 
-```
-src/components/history/
-├── MonthNavigation.vue    # ~65 linhas (navegação entre meses)
-├── MonthStats.vue         # ~35 linhas (estatísticas mensais)
-├── HistoryList.vue        # ~100 linhas (lista de tarefas)
-└── CalendarView.vue       # ~55 linhas (visualização calendário)
-```
-
-#### LoginView Modularizado (438 → 152 linhas)
+### CSS Variables (variables.css)
 
 ```
+
+```csssrc/components/history/
+
+/* Cores principais */├── MonthNavigation.vue    # ~65 linhas (navegação entre meses)
+
+--primary: #6366f1;├── MonthStats.vue         # ~35 linhas (estatísticas mensais)
+
+--success: #10b981;├── HistoryList.vue        # ~100 linhas (lista de tarefas)
+
+--warning: #f59e0b;└── CalendarView.vue       # ~55 linhas (visualização calendário)
+
+--danger: #ef4444;```
+
+
+
+/* Glassmorphism */#### LoginView Modularizado (438 → 152 linhas)
+
+--glass-bg: rgba(30, 41, 59, 0.6);
+
+--glass-blur: 8px;```
+
 src/components/login/
-├── ProfileSelector.vue    # ~55 linhas (seleção de perfil)
-├── LoginForm.vue          # ~75 linhas (formulário de login)
-└── RegisterForm.vue       # ~145 linhas (formulário de registro)
+
+/* Shadows sutis */├── ProfileSelector.vue    # ~55 linhas (seleção de perfil)
+
+--shadow-glow: 0 0 15px rgba(99, 102, 241, 0.2);├── LoginForm.vue          # ~75 linhas (formulário de login)
+
+```└── RegisterForm.vue       # ~145 linhas (formulário de registro)
+
 ```
+
+### Classes Utilitárias
 
 #### ReviewView Modularizado (366 → 127 linhas)
 
+| Classe | Uso |
+
+|--------|-----|```
+
+| `.glass-card` | Card com glassmorphism |src/components/review/
+
+| `.btn-premium` | Botão base |├── StatsOverview.vue      # ~50 linhas (cards de estatísticas)
+
+| `.btn-gradient-primary` | Botão gradiente |├── WeeklyChart.vue        # ~55 linhas (gráfico semanal)
+
+| `.btn-glass` | Botão transparente |├── CategoryBreakdown.vue  # ~45 linhas (breakdown por categoria)
+
+| `.input-glass` | Input estilizado |└── InsightsList.vue       # ~45 linhas (lista de insights)
+
 ```
-src/components/review/
-├── StatsOverview.vue      # ~50 linhas (cards de estatísticas)
-├── WeeklyChart.vue        # ~55 linhas (gráfico semanal)
-├── CategoryBreakdown.vue  # ~45 linhas (breakdown por categoria)
-└── InsightsList.vue       # ~45 linhas (lista de insights)
-```
+
+### Padrões Tailwind v4
 
 #### ExportView Modularizado (358 → 163 linhas)
 
-```
-src/components/export/
+```html
+
+<!-- Gradientes: use bg-linear-to-* -->```
+
+<div class="bg-linear-to-r from-indigo-500 to-purple-600">src/components/export/
+
 ├── FormatSelector.vue     # ~40 linhas (seletor de formato)
-├── DateRangeSelector.vue  # ~50 linhas (seletor de período)
-└── ExportPreview.vue      # ~70 linhas (preview e dicas)
+
+<!-- Sem bordas em cards/botões -->├── DateRangeSelector.vue  # ~50 linhas (seletor de período)
+
+<div class="glass-card p-6">└── ExportPreview.vue      # ~70 linhas (preview e dicas)
+
 ```
 
-### 📈 RESUMO DA MODULARIZAÇÃO DE VIEWS
+<!-- Focus com ring -->
+
+<input class="focus:ring-2 focus:ring-primary/20">### 📈 RESUMO DA MODULARIZAÇÃO DE VIEWS
+
+```
 
 | View         | Antes    | Depois   | Redução  | Componentes Criados                                                          |
-| ------------ | -------- | -------- | -------- | ---------------------------------------------------------------------------- |
-| HomeView     | 335      | 175      | -48%     | HomeHeader, QuickActions, InProgressBanner, CategoriesLegend                 |
-| ExecuteView  | 559      | 260      | -53%     | TimerDisplay, TimerControls, SessionStats, DistractionModal, CompletionModal |
-| PlanView     | 339      | 160      | -53%     | WeekNavigation, DayCard, PlanningTips                                        |
-| SettingsView | 614      | 202      | -67%     | ProfileTab, PreferencesTab, NotificationsTab, DataTab                        |
-| HistoryView  | 450      | 148      | -67%     | MonthNavigation, MonthStats, HistoryList, CalendarView                       |
-| LoginView    | 438      | 152      | -65%     | ProfileSelector, LoginForm, RegisterForm                                     |
-| ReviewView   | 366      | 127      | -65%     | StatsOverview, WeeklyChart, CategoryBreakdown, InsightsList                  |
-| ExportView   | 358      | 163      | -54%     | FormatSelector, DateRangeSelector, ExportPreview                             |
-| **TOTAL**    | **3459** | **1387** | **-60%** | **30 componentes**                                                           |
 
-### 🏗️ FASE 3 - MODULARIZAÇÃO DOS COMPOSABLES
+---| ------------ | -------- | -------- | -------- | ---------------------------------------------------------------------------- |
+
+| HomeView     | 335      | 175      | -48%     | HomeHeader, QuickActions, InProgressBanner, CategoriesLegend                 |
+
+## 🚀 Comandos| ExecuteView  | 559      | 260      | -53%     | TimerDisplay, TimerControls, SessionStats, DistractionModal, CompletionModal |
+
+| PlanView     | 339      | 160      | -53%     | WeekNavigation, DayCard, PlanningTips                                        |
+
+```bash| SettingsView | 614      | 202      | -67%     | ProfileTab, PreferencesTab, NotificationsTab, DataTab                        |
+
+# Desenvolvimento| HistoryView  | 450      | 148      | -67%     | MonthNavigation, MonthStats, HistoryList, CalendarView                       |
+
+npm run dev| LoginView    | 438      | 152      | -65%     | ProfileSelector, LoginForm, RegisterForm                                     |
+
+| ReviewView   | 366      | 127      | -65%     | StatsOverview, WeeklyChart, CategoryBreakdown, InsightsList                  |
+
+# Build produção| ExportView   | 358      | 163      | -54%     | FormatSelector, DateRangeSelector, ExportPreview                             |
+
+npm run build| **TOTAL**    | **3459** | **1387** | **-60%** | **30 componentes**                                                           |
+
+
+
+# Preview### 🏗️ FASE 3 - MODULARIZAÇÃO DOS COMPOSABLES
+
+npm run preview
 
 #### useIndexedDB Modularizado (751 → 100 linhas)
 
-```
-src/composables/db/
+# Deploy Vercel
+
+vercel --prod```
+
+```src/composables/db/
+
 ├── schema.js      # 99 linhas (schema DB, categorias e settings padrão)
-├── utils.js       # 55 linhas (toCloneable, formatDateString, now)
+
+---├── utils.js       # 55 linhas (toCloneable, formatDateString, now)
+
 ├── core.js        # 65 linhas (initDB, getStore, estado global)
-├── crud.js        # 142 linhas (add, get, getAll, update, remove, etc)
+
+## 📋 Próximos Passos├── crud.js        # 142 linhas (add, get, getAll, update, remove, etc)
+
 ├── entities.js    # 274 linhas (users, days, tasks, categories, settings)
-├── stats.js       # 196 linhas (getDayStats, getWeekStats, backup)
-└── index.js       # 12 linhas (re-exports)
-```
 
-#### useAuth Modularizado (410 → 80 linhas)
+1. [ ] Testar fluxo completo: Login → Criar Tarefa → Executar → Exportar├── stats.js       # 196 linhas (getDayStats, getWeekStats, backup)
 
-```
+2. [ ] Testar responsividade mobile└── index.js       # 12 linhas (re-exports)
+
+3. [ ] Rodar Lighthouse audit```
+
+4. [ ] Testar instalação PWA
+
+5. [ ] Implementar drag-and-drop no timeline#### useAuth Modularizado (410 → 80 linhas)
+
+
+
+---```
+
 src/composables/auth/
-├── crypto.js      # 105 linhas (hashPassword, encryptData, decryptData)
+
+## 🔗 Links Úteis├── crypto.js      # 105 linhas (hashPassword, encryptData, decryptData)
+
 ├── session.js     # 80 linhas (estado global, saveSession, clearSession)
-├── profiles.js    # 229 linhas (register, login, logout, listProfiles)
-└── index.js       # 8 linhas (re-exports)
-```
+
+- **Repositório**: [GitHub](https://github.com/MrJCRJ/cronofocus)├── profiles.js    # 229 linhas (register, login, logout, listProfiles)
+
+- **Deploy**: [Vercel](https://cronofocus.vercel.app)└── index.js       # 8 linhas (re-exports)
+
+- **Vue Docs**: https://vuejs.org/```
+
+- **Tailwind Docs**: https://tailwindcss.com/
 
 #### useNotifications Modularizado (420 → 72 linhas)
 
+---
+
 ```
-src/composables/notifications/
-├── audio.js       # 113 linhas (playSound, playBeep, AudioContext)
+
+**Última Atualização**: 05/12/2025  src/composables/notifications/
+
+**Status**: ✅ Pronto para testes e integração final├── audio.js       # 113 linhas (playSound, playBeep, AudioContext)
+
 ├── push.js        # 154 linhas (requestPermission, notify, cancel)
 ├── tasks.js       # 88 linhas (notifyTaskStart, notifyTimerEnd, etc)
 ├── scheduler.js   # 115 linhas (scheduleTaskNotifications, dailySummary)

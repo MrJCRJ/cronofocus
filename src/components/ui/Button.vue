@@ -128,7 +128,7 @@ const buttonClasses = computed(() => {
   // Variant classes
   const variants = {
     primary: [
-      "bg-gradient-to-r",
+      "bg-linear-to-r",
       "from-indigo-500",
       "to-purple-600",
       "text-white",
@@ -148,7 +148,7 @@ const buttonClasses = computed(() => {
       "focus:ring-white/50",
     ],
     success: [
-      "bg-gradient-to-r",
+      "bg-linear-to-r",
       "from-emerald-500",
       "to-green-500",
       "text-white",
@@ -158,7 +158,7 @@ const buttonClasses = computed(() => {
       "focus:ring-emerald-500",
     ],
     danger: [
-      "bg-gradient-to-r",
+      "bg-linear-to-r",
       "from-rose-500",
       "to-pink-500",
       "text-white",
@@ -168,7 +168,7 @@ const buttonClasses = computed(() => {
       "focus:ring-rose-500",
     ],
     warning: [
-      "bg-gradient-to-r",
+      "bg-linear-to-r",
       "from-amber-500",
       "to-orange-500",
       "text-white",
@@ -178,7 +178,7 @@ const buttonClasses = computed(() => {
       "focus:ring-amber-500",
     ],
     info: [
-      "bg-gradient-to-r",
+      "bg-linear-to-r",
       "from-blue-500",
       "to-cyan-500",
       "text-white",

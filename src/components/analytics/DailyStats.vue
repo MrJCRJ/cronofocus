@@ -117,7 +117,7 @@ const topCategories = computed(() => {
         </div>
         <div class="h-2 bg-base-300 rounded-full overflow-hidden">
           <div
-            class="h-full bg-gradient-to-r from-green-500 to-emerald-400 transition-all duration-500"
+            class="h-full bg-linear-to-r from-green-500 to-emerald-400 transition-all duration-500"
             :style="{ width: `${completionRate}%` }"
           />
         </div>
@@ -131,7 +131,7 @@ const topCategories = computed(() => {
         </div>
         <div class="h-2 bg-base-300 rounded-full overflow-hidden">
           <div
-            class="h-full bg-gradient-to-r from-blue-500 to-cyan-400 transition-all duration-500"
+            class="h-full bg-linear-to-r from-blue-500 to-cyan-400 transition-all duration-500"
             :style="{ width: `${Math.min(100, efficiencyRate)}%` }"
           />
         </div>

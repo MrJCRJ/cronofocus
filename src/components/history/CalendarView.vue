@@ -50,7 +50,7 @@ const weekDays = ["Dom", "Seg", "Ter", "Qua", "Qui", "Sex", "Sáb"];
           <div v-if="day.total > 0" class="space-y-1">
             <div class="h-1.5 bg-gray-800 rounded-full overflow-hidden">
               <div
-                class="h-full bg-gradient-to-r from-emerald-500 to-cyan-400"
+                class="h-full bg-linear-to-r from-emerald-500 to-cyan-400"
                 :style="{ width: `${(day.completed / day.total) * 100}%` }"
               />
             </div>
