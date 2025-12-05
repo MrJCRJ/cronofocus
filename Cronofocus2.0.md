@@ -117,6 +117,10 @@ npm run lint
 
 ---
 
+> NOTE: The legacy `CRONOFOCUS.md` has been archived as `CRONOFOCUS.legacy.md` and removed from the root to keep the primary project docs concise. Use `CRONOFOCUS.legacy.md` for the earlier, more verbose documentation snapshot.
+
+---
+
 ## Detailed Technical Reference (legacy CRONOFOCUS)
 
 This section consolidates the more detailed, legacy information from the previous `CRONOFOCUS.md` for developers and QA.
