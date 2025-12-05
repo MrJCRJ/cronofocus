@@ -34,7 +34,7 @@ export const AVATAR_COLORS = [
  */
 export async function register(userData) {
   const { createUser, getUserByUsername } = useIndexedDB()
-  
+
   try {
     authError.value = null
     isLoading.value = true
@@ -82,7 +82,7 @@ export async function register(userData) {
  */
 export async function login(username, password = null) {
   const { getUserByUsername, updateLastLogin } = useIndexedDB()
-  
+
   try {
     authError.value = null
     isLoading.value = true
@@ -133,7 +133,7 @@ export function logout() {
  */
 export async function updateProfile(updates) {
   const { update } = useIndexedDB()
-  
+
   try {
     if (!currentUser.value) {
       throw new Error('Usuário não autenticado')
@@ -174,7 +174,7 @@ export async function verifyCurrentPassword(password) {
  */
 export async function deleteAccount() {
   const { remove } = useIndexedDB()
-  
+
   try {
     if (!currentUser.value) {
       throw new Error('Usuário não autenticado')
@@ -195,7 +195,7 @@ export async function deleteAccount() {
  */
 export async function listProfiles() {
   const { getAll } = useIndexedDB()
-  
+
   try {
     const users = await getAll('users')
     return users.map(user => ({

@@ -18,7 +18,7 @@ import {
  */
 export async function exportToPNG(elementId, options = {}) {
   const { logExport } = useIndexedDB()
-  
+
   try {
     isExporting.value = true
     exportError.value = null

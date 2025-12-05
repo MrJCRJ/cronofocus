@@ -24,7 +24,7 @@ export function scheduleTaskNotifications(task, settings) {
       notifyTaskReminder(task, reminderMinutes)
       scheduledTimeouts.delete(`reminder-${task.id}`)
     }, reminderTimeout)
-    
+
     scheduledTimeouts.set(`reminder-${task.id}`, reminderId)
   }
 
@@ -35,7 +35,7 @@ export function scheduleTaskNotifications(task, settings) {
       notifyTaskStart(task)
       scheduledTimeouts.delete(`start-${task.id}`)
     }, startTimeout)
-    
+
     scheduledTimeouts.set(`start-${task.id}`, startId)
   }
 }
@@ -46,12 +46,12 @@ export function scheduleTaskNotifications(task, settings) {
 export function cancelScheduledNotifications(taskId) {
   const reminderKey = `reminder-${taskId}`
   const startKey = `start-${taskId}`
-  
+
   if (scheduledTimeouts.has(reminderKey)) {
     clearTimeout(scheduledTimeouts.get(reminderKey))
     scheduledTimeouts.delete(reminderKey)
   }
-  
+
   if (scheduledTimeouts.has(startKey)) {
     clearTimeout(scheduledTimeouts.get(startKey))
     scheduledTimeouts.delete(startKey)
@@ -85,12 +85,12 @@ export function scheduleDailySummary(hour = 20, getStatsCallback = null) {
       const stats = await getStatsCallback()
       await notifyDailySummary(stats)
     }
-    
+
     // Re-agendar para próximo dia
     scheduleDailySummary(hour, getStatsCallback)
     scheduledTimeouts.delete('daily-summary')
   }, timeout)
-  
+
   scheduledTimeouts.set('daily-summary', summaryId)
 }
 

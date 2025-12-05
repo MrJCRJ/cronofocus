@@ -17,7 +17,7 @@ import {
  */
 export async function exportToCSV(tasks, options = {}) {
   const { logExport } = useIndexedDB()
-  
+
   try {
     isExporting.value = true
     exportError.value = null

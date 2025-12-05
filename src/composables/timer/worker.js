@@ -110,7 +110,7 @@ export function createWorker(messageHandler, errorHandler) {
   })
 
   URL.revokeObjectURL(workerUrl)
-  
+
   return timerWorker
 }
 

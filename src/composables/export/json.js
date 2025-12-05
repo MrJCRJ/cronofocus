@@ -17,7 +17,7 @@ import {
  */
 export async function exportToJSON(data, options = {}) {
   const { logExport, exportAllData } = useIndexedDB()
-  
+
   try {
     isExporting.value = true
     exportError.value = null
