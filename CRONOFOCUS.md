@@ -70,6 +70,138 @@ src/components/plan/
 └── PlanningTips.vue       # 36 linhas
 ```
 
+#### SettingsView Modularizado (614 → 202 linhas)
+
+```
+src/components/settings/
+├── ProfileTab.vue         # ~160 linhas (edição de perfil)
+├── PreferencesTab.vue     # ~100 linhas (preferências de tempo)
+├── NotificationsTab.vue   # ~95 linhas (configuração de notificações)
+└── DataTab.vue            # ~50 linhas (gerenciamento de dados)
+```
+
+#### HistoryView Modularizado (450 → 148 linhas)
+
+```
+src/components/history/
+├── MonthNavigation.vue    # ~65 linhas (navegação entre meses)
+├── MonthStats.vue         # ~35 linhas (estatísticas mensais)
+├── HistoryList.vue        # ~100 linhas (lista de tarefas)
+└── CalendarView.vue       # ~55 linhas (visualização calendário)
+```
+
+#### LoginView Modularizado (438 → 152 linhas)
+
+```
+src/components/login/
+├── ProfileSelector.vue    # ~55 linhas (seleção de perfil)
+├── LoginForm.vue          # ~75 linhas (formulário de login)
+└── RegisterForm.vue       # ~145 linhas (formulário de registro)
+```
+
+#### ReviewView Modularizado (366 → 127 linhas)
+
+```
+src/components/review/
+├── StatsOverview.vue      # ~50 linhas (cards de estatísticas)
+├── WeeklyChart.vue        # ~55 linhas (gráfico semanal)
+├── CategoryBreakdown.vue  # ~45 linhas (breakdown por categoria)
+└── InsightsList.vue       # ~45 linhas (lista de insights)
+```
+
+#### ExportView Modularizado (358 → 163 linhas)
+
+```
+src/components/export/
+├── FormatSelector.vue     # ~40 linhas (seletor de formato)
+├── DateRangeSelector.vue  # ~50 linhas (seletor de período)
+└── ExportPreview.vue      # ~70 linhas (preview e dicas)
+```
+
+### 📈 RESUMO DA MODULARIZAÇÃO DE VIEWS
+
+| View         | Antes    | Depois   | Redução  | Componentes Criados                                                          |
+| ------------ | -------- | -------- | -------- | ---------------------------------------------------------------------------- |
+| HomeView     | 335      | 175      | -48%     | HomeHeader, QuickActions, InProgressBanner, CategoriesLegend                 |
+| ExecuteView  | 559      | 260      | -53%     | TimerDisplay, TimerControls, SessionStats, DistractionModal, CompletionModal |
+| PlanView     | 339      | 160      | -53%     | WeekNavigation, DayCard, PlanningTips                                        |
+| SettingsView | 614      | 202      | -67%     | ProfileTab, PreferencesTab, NotificationsTab, DataTab                        |
+| HistoryView  | 450      | 148      | -67%     | MonthNavigation, MonthStats, HistoryList, CalendarView                       |
+| LoginView    | 438      | 152      | -65%     | ProfileSelector, LoginForm, RegisterForm                                     |
+| ReviewView   | 366      | 127      | -65%     | StatsOverview, WeeklyChart, CategoryBreakdown, InsightsList                  |
+| ExportView   | 358      | 163      | -54%     | FormatSelector, DateRangeSelector, ExportPreview                             |
+| **TOTAL**    | **3459** | **1387** | **-60%** | **30 componentes**                                                           |
+
+### 🏗️ FASE 3 - MODULARIZAÇÃO DOS COMPOSABLES
+
+#### useIndexedDB Modularizado (751 → 100 linhas)
+
+```
+src/composables/db/
+├── schema.js      # 99 linhas (schema DB, categorias e settings padrão)
+├── utils.js       # 55 linhas (toCloneable, formatDateString, now)
+├── core.js        # 65 linhas (initDB, getStore, estado global)
+├── crud.js        # 142 linhas (add, get, getAll, update, remove, etc)
+├── entities.js    # 274 linhas (users, days, tasks, categories, settings)
+├── stats.js       # 196 linhas (getDayStats, getWeekStats, backup)
+└── index.js       # 12 linhas (re-exports)
+```
+
+#### useAuth Modularizado (410 → 80 linhas)
+
+```
+src/composables/auth/
+├── crypto.js      # 105 linhas (hashPassword, encryptData, decryptData)
+├── session.js     # 80 linhas (estado global, saveSession, clearSession)
+├── profiles.js    # 229 linhas (register, login, logout, listProfiles)
+└── index.js       # 8 linhas (re-exports)
+```
+
+#### useNotifications Modularizado (420 → 72 linhas)
+
+```
+src/composables/notifications/
+├── audio.js       # 113 linhas (playSound, playBeep, AudioContext)
+├── push.js        # 154 linhas (requestPermission, notify, cancel)
+├── tasks.js       # 88 linhas (notifyTaskStart, notifyTimerEnd, etc)
+├── scheduler.js   # 115 linhas (scheduleTaskNotifications, dailySummary)
+└── index.js       # 8 linhas (re-exports)
+```
+
+#### useExport Modularizado (399 → 35 linhas)
+
+```
+src/composables/export/
+├── utils.js       # 66 linhas (downloadBlob, formatDateForFilename)
+├── csv.js         # 97 linhas (exportToCSV)
+├── json.js        # 102 linhas (exportToJSON, importFromJSON)
+├── png.js         # 104 linhas (exportToPNG com html2canvas)
+├── report.js      # 112 linhas (generateTextReport, generateMarkdownReport)
+└── index.js       # 9 linhas (re-exports)
+```
+
+#### useTimer Modularizado (386 → 80 linhas)
+
+```
+src/composables/timer/
+├── worker.js      # 131 linhas (código Web Worker inline)
+├── state.js       # 109 linhas (estado global, callbacks, computed)
+├── controls.js    # 109 linhas (start, pause, resume, stop, reset)
+├── formatting.js  # 65 linhas (formattedTime, formatDuration)
+└── index.js       # 8 linhas (re-exports)
+```
+
+### 📈 RESUMO DA MODULARIZAÇÃO DE COMPOSABLES
+
+| Composable       | Antes    | Depois | Redução  | Módulos Criados                                     |
+| ---------------- | -------- | ------ | -------- | --------------------------------------------------- |
+| useIndexedDB     | 751      | 100    | -87%     | schema, utils, core, crud, entities, stats          |
+| useAuth          | 410      | 80     | -80%     | crypto, session, profiles                           |
+| useNotifications | 420      | 72     | -83%     | audio, push, tasks, scheduler                       |
+| useExport        | 399      | 35     | -91%     | utils, csv, json, png, report                       |
+| useTimer         | 386      | 80     | -79%     | worker, state, controls, formatting                 |
+| **TOTAL**        | **2366** | **367**| **-84%** | **24 módulos**                                      |
+
 ### 🐛 BUGS ENCONTRADOS E CORRIGIDOS
 
 1. **Sons de notificação faltando**
@@ -121,26 +253,36 @@ src/components/plan/
 | **Componentes Home**        | ✅        | 4 componentes extraídos                    |
 | **Componentes Execute**     | ✅        | 5 componentes extraídos                    |
 | **Componentes Plan**        | ✅        | 3 componentes extraídos                    |
+| **Componentes Settings**    | ✅        | 4 componentes extraídos                    |
+| **Componentes History**     | ✅        | 4 componentes extraídos                    |
+| **Componentes Login**       | ✅        | 3 componentes extraídos                    |
+| **Componentes Review**      | ✅        | 4 componentes extraídos                    |
+| **Componentes Export**      | ✅        | 3 componentes extraídos                    |
+| **Build Final**             | ✅        | 127 módulos, 532.93 KB                     |
+| **Composables Modularizados** | ✅      | 5 composables → 24 módulos                 |
 
-### 📊 MÉTRICAS ATUALIZADAS (PÓS-MODULARIZAÇÃO)
+### 📊 MÉTRICAS ATUALIZADAS (PÓS-MODULARIZAÇÃO COMPLETA)
 
-- **Bundle size total**: 524.77 KB
-- **Módulos transformados**: 93 (antes: 80)
-- **Tempo de build**: 3.05s
+- **Bundle size total**: 532.93 KB
+- **Módulos transformados**: 127 (antes: 80 → 93 → 111 → 127)
+- **Tempo de build**: 3.18s
 - **PWA**: 20 entries precached
-- **Componentes criados**: 12 novos
+- **Componentes Vue criados**: 30 novos
+- **Módulos JS criados**: 24 novos (composables)
 - **Arquivos CSS**: 10 (antes: 1 monolítico)
+- **Redução média de views**: 60%
+- **Redução média de composables**: 84%
 
 ### 🎯 PRÓXIMOS PASSOS
 
 1. [x] Testar servidor dev - sem erros críticos ✅
 2. [x] Modularizar CSS ✅
-3. [x] Dividir views grandes ✅
-4. [ ] Testar fluxo completo em navegador: Login → Criar Tarefa → Executar Timer → Exportar
-5. [ ] Testar responsividade em dispositivos móveis
-6. [ ] Rodar Lighthouse audit
-7. [ ] Testar instalação PWA
-8. [ ] Dividir arquivos grandes (>200 linhas) - FASE 2
+3. [x] Dividir views grandes - FASE 2 COMPLETA ✅
+4. [x] Modularizar composables - FASE 3 COMPLETA ✅
+5. [ ] Testar fluxo completo em navegador: Login → Criar Tarefa → Executar Timer → Exportar
+6. [ ] Testar responsividade em dispositivos móveis
+7. [ ] Rodar Lighthouse audit
+8. [ ] Testar instalação PWA
 
 ---
 
@@ -176,22 +318,90 @@ cronofocus/
 │   ├── App.vue                # Root component
 │   ├── style.css              # Estilos globais
 │   ├── assets/
-│   │   └── main.css           # Sistema de design premium (700+ linhas)
+│   │   └── css/               # CSS Modularizado (FASE 2)
+│   │       ├── base/          # reset, variables, typography
+│   │       ├── components/    # buttons, cards, forms, timeline
+│   │       ├── utilities/     # animations, glassmorphism, layouts
+│   │       └── main.css       # imports centralizados
 │   ├── components/
-│   │   ├── HelloWorld.vue
 │   │   ├── agenda/
 │   │   │   ├── AgendaTimeline.vue  # Timeline estilo Google Calendar
 │   │   │   └── TaskForm.vue        # Formulário de criação de tarefas
 │   │   ├── analytics/
 │   │   │   └── DailyStats.vue      # Estatísticas diárias
-│   │   └── layout/
-│   │       └── NavBar.vue          # Navegação principal premium
+│   │   ├── execute/           # Componentes ExecuteView (FASE 2)
+│   │   │   ├── TimerDisplay.vue
+│   │   │   ├── TimerControls.vue
+│   │   │   ├── SessionStats.vue
+│   │   │   ├── DistractionModal.vue
+│   │   │   └── CompletionModal.vue
+│   │   ├── export/            # Componentes ExportView (FASE 2)
+│   │   │   ├── FormatSelector.vue
+│   │   │   ├── DateRangeSelector.vue
+│   │   │   └── ExportPreview.vue
+│   │   ├── history/           # Componentes HistoryView (FASE 2)
+│   │   │   ├── MonthNavigation.vue
+│   │   │   ├── MonthStats.vue
+│   │   │   ├── HistoryList.vue
+│   │   │   └── CalendarView.vue
+│   │   ├── home/              # Componentes HomeView (FASE 2)
+│   │   │   ├── HomeHeader.vue
+│   │   │   ├── QuickActions.vue
+│   │   │   ├── InProgressBanner.vue
+│   │   │   └── CategoriesLegend.vue
+│   │   ├── layout/
+│   │   │   └── NavBar.vue          # Navegação principal premium
+│   │   ├── login/             # Componentes LoginView (FASE 2)
+│   │   │   ├── ProfileSelector.vue
+│   │   │   ├── LoginForm.vue
+│   │   │   └── RegisterForm.vue
+│   │   ├── plan/              # Componentes PlanView (FASE 2)
+│   │   │   ├── WeekNavigation.vue
+│   │   │   ├── DayCard.vue
+│   │   │   └── PlanningTips.vue
+│   │   ├── review/            # Componentes ReviewView (FASE 2)
+│   │   │   ├── StatsOverview.vue
+│   │   │   ├── WeeklyChart.vue
+│   │   │   ├── CategoryBreakdown.vue
+│   │   │   └── InsightsList.vue
+│   │   └── settings/          # Componentes SettingsView (FASE 2)
+│   │       ├── ProfileTab.vue
+│   │       ├── PreferencesTab.vue
+│   │       ├── NotificationsTab.vue
+│   │       └── DataTab.vue
 │   ├── composables/
-│   │   ├── useAuth.js              # Autenticação local
-│   │   ├── useExport.js            # Export CSV/JSON/PNG
-│   │   ├── useIndexedDB.js         # Persistência local
-│   │   ├── useNotifications.js     # Push notifications + sons
-│   │   └── useTimer.js             # Timer com Web Worker
+│   │   ├── auth/              # Módulos de autenticação (FASE 3)
+│   │   │   ├── crypto.js      # Hash e criptografia
+│   │   │   ├── session.js     # Estado e sessão
+│   │   │   └── profiles.js    # Gerenciamento de perfis
+│   │   ├── db/                # Módulos de banco de dados (FASE 3)
+│   │   │   ├── schema.js      # Schema e configurações
+│   │   │   ├── utils.js       # Utilitários
+│   │   │   ├── core.js        # Inicialização
+│   │   │   ├── crud.js        # Operações CRUD
+│   │   │   ├── entities.js    # Operações por entidade
+│   │   │   └── stats.js       # Estatísticas e backup
+│   │   ├── export/            # Módulos de exportação (FASE 3)
+│   │   │   ├── utils.js       # Utilitários
+│   │   │   ├── csv.js         # Exportação CSV
+│   │   │   ├── json.js        # Exportação JSON
+│   │   │   ├── png.js         # Exportação PNG
+│   │   │   └── report.js      # Geração de relatórios
+│   │   ├── notifications/     # Módulos de notificação (FASE 3)
+│   │   │   ├── audio.js       # Sistema de áudio
+│   │   │   ├── push.js        # Push notifications
+│   │   │   ├── tasks.js       # Notificações de tarefas
+│   │   │   └── scheduler.js   # Agendamento
+│   │   ├── timer/             # Módulos do timer (FASE 3)
+│   │   │   ├── worker.js      # Web Worker
+│   │   │   ├── state.js       # Estado e callbacks
+│   │   │   ├── controls.js    # Controles
+│   │   │   └── formatting.js  # Formatação de tempo
+│   │   ├── useAuth.js         # Composable principal (80 linhas)
+│   │   ├── useExport.js       # Composable principal (35 linhas)
+│   │   ├── useIndexedDB.js    # Composable principal (100 linhas)
+│   │   ├── useNotifications.js # Composable principal (72 linhas)
+│   │   └── useTimer.js        # Composable principal (80 linhas)
 │   ├── router/
 │   │   └── index.js                # Configuração de rotas
 │   ├── stores/
@@ -199,14 +409,14 @@ cronofocus/
 │   │   ├── settingsStore.js        # Configurações do usuário
 │   │   └── timeStore.js            # Estado do timer/tarefas
 │   └── views/
-│       ├── ExecuteView.vue         # Timer de execução
-│       ├── ExportView.vue          # Exportação de dados
-│       ├── HistoryView.vue         # Histórico de tarefas
-│       ├── HomeView.vue            # Dashboard principal
-│       ├── LoginView.vue           # Login/seleção de perfil
-│       ├── PlanView.vue            # Planejamento semanal
-│       ├── ReviewView.vue          # Análise e métricas
-│       └── SettingsView.vue        # Configurações
+│       ├── ExecuteView.vue         # Timer de execução (260 linhas)
+│       ├── ExportView.vue          # Exportação de dados (163 linhas)
+│       ├── HistoryView.vue         # Histórico de tarefas (148 linhas)
+│       ├── HomeView.vue            # Dashboard principal (175 linhas)
+│       ├── LoginView.vue           # Login/seleção de perfil (152 linhas)
+│       ├── PlanView.vue            # Planejamento semanal (160 linhas)
+│       ├── ReviewView.vue          # Análise e métricas (127 linhas)
+│       └── SettingsView.vue        # Configurações (202 linhas)
 ├── .env.example                    # Variáveis de ambiente
 ├── .env.production                 # Config produção
 ├── .github/
