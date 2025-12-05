@@ -1,0 +1,116 @@
+# CronoFocus 2.0 — Release Notes & Migration Guide
+
+## Introdução
+CronoFocus 2.0 é uma revisão do CronoFocus com foco em modularização, design refinado e melhor organização do código (views, composables, CSS). Este documento descreve o que mudou, como migrar, e quais pontos checar após atualização.
+
+---
+
+## Resumo da Release (2.0)
+- Modularização completa das principais features (FASE 2 & 3).
+- Refinamento visual: Tailwind v4, glassmorphism reduzido, bordas removidas e sombras sutis.
+- Performance: redução de tamanho de views e de composables, bundle estável (~532KB).
+- Correções importantes: correção de `router.push` no template, guardas de rota com import dinâmico do `authStore`, IndexedDB `toCloneable`.
+
+---
+
+## Release Highlights
+1. Modern UI
+   - Gradientes atualizados para Tailwind v4 (bg-linear-to-*).
+   - Glassmorphism simplificado: blur reduzido e opacidade ajustada.
+   - Remoção de bordas desnecessárias, foco por anel (`focus:ring`) para inputs.
+
+2. Arquitetura e Modularização
+   - CSS modularizado em `src/assets/css/` (base, components, utilities).
+   - Views grandes divididas em pequenos componentes reutilizáveis.
+   - Composables separadas em módulos menores (db/ auth/ timer/ export/ notifications/).
+
+3. Correções Críticas
+   - `router.push` deve ser chamado por métodos (evitar chamar diretamente no template)
+   - `authStore` foi importado dinamicamente dentro de guards de rota para evitar issues de inicialização do Pinia
+   - IndexedDB: `toCloneable()` para converter objetos Vue reativos antes de salvar
+
+---
+
+## Arquivos e Estruturas Relevantes
+- `src/assets/css/base/variables.css` — variáveis globais e padrões
+- `src/assets/css/components/` — botões, cards, forms, etc.
+- `src/views/` — principais views reorganizadas em componentes
+- `src/composables/` — modularização dos composables em sub-pastas
+- `src/stores/` — Pinia stores
+
+---
+
+## Migração — Checklist para Devs (Upgrade para 2.0)
+1. Pull do branch `main` e instalar dependências:
+
+```
+# Instalar dependências
+npm install
+
+# Testar dev server
+npm run dev
+```
+
+2. Verificar classes tailwind: substituir `bg-gradient-to-` por `bg-linear-to-` caso haja warnings.
+3. Inspecionar formulários e inputs: agora usam `focus:ring-2` e não têm bordas por padrão.
+4. Certifique-se de que guardas de rota importem `authStore` dinamicamente — caso contrário, os guards podem falhar em dev com Pinia.
+5. Ao salvar dados no IndexedDB, utilize o utilitário `toCloneable()` para evitar erros de cloning de Proxy.
+6. Rodar `npm run build` para gerar bundle de produção e verificar se warnings aparecem.
+
+---
+
+## Testes Recomendados (Smoke Tests)
+- Login + selecionar ou criar perfil
+- Criar nova tarefa → Ver se entra em `timeStore` e aparece na agenda
+- Executar timer: start → pause → resume → complete
+- Exportar dados (CSV/JSON/PNG)
+- Importar backup (JSON) e confirmar integridade
+- Conferir PWA install (mobile) e offline mode
+
+---
+
+## Changelog Resumido (principais commits/PRs)
+- `feat(composables)`: modularização de useIndexedDB, useTimer, useAuth, useNotifications, useExport
+- `refactor(views)`: split views into smaller Vue components
+- `refactor(styles)`: modularização css, tailwind v4 classes, glassmorphism improvements
+- `fix(router)`: guards & router usage corrected
+- `fix(db)`: toCloneable util for indexedDB
+
+---
+
+## Notas para QA
+- Rodar quais testes já existem na pipeline (unit + E2E se aplicável)
+- Testar em navegadores populares e em mobile (iOS/Android) para PWA
+- Confirmar que não há regressões visuais: foco por teclado, contraste e leituras por leitores de tela
+
+---
+
+## Referências Rápidas — Comandos Úteis
+```
+# Instalar dependências
+npm install
+
+# Development server
+npm run dev
+
+# Build production
+npm run build
+
+# Preview build
+npm run preview
+
+# Lint
+npm run lint
+```
+
+---
+
+## Observações Finais
+- Se desejar, eu posso gerar um arquivo `CHANGELOG.md` detalhado com PRs e commits do repo.
+- Também posso criar um script de verificação que valida as classes Tailwind e faz substituições automáticas se desejado (padrões que utilizamos aqui: `bg-linear-to-*`, tokens para min/max widths/heights e toggle util classes).
+
+---
+
+**Versão:** 2.0 — CronoFocus 05/12/2025
+
+**Autor:** Equipe CronoFocus — atualizações manuais e automações
